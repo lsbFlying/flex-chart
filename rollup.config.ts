@@ -2,8 +2,8 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import pkg from "./package.json";
 import resolvePlugin from "@rollup/plugin-node-resolve";
-// @ts-ignore
-import babelPlugin from "rollup-plugin-babel";
+import { babel } from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser"; // 压缩打包文件
 
 const input = "src/index.tsx";
@@ -11,7 +11,14 @@ const deps = Object.keys({ ...pkg.dependencies });
 const external = (id: string) => deps.some((dep) => id.startsWith(dep));
 const plugins = [
   resolvePlugin(),
-  babelPlugin({ exclude: 'node_modules/**' }),
+  babel({
+    exclude: "node_modules/**",
+    presets: ["@babel/preset-react"],
+    babelHelpers: "bundled",
+  }),
+  commonjs({
+    include: /node_modules/,
+  }),
   typescript(),
   terser(),
 ];

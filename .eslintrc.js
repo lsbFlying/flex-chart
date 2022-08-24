@@ -6,6 +6,9 @@ module.exports = {
     // project: './tsconfig.json',
     createDefaultProgram: true, // https://github.com/typescript-eslint/typescript-eslint/issues/967
   },
+  rules: {
+    "@typescript-eslint/ban-ts-comment": "off",
+  },
   plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
