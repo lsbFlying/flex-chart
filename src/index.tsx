@@ -126,13 +126,13 @@ export class AxisChart extends React.PureComponent<AxisChartProps, AxisChartStat
     }, option);
     
     if (theme === "verticalInverse") {
-      chartOptions.xAxis = merge({ position: "top" }, option.xAxis);
-      chartOptions.yAxis = merge({ inverse: true }, option.yAxis);
+      chartOptions.xAxis = merge({ position: "top" }, chartOptions.xAxis);
+      chartOptions.yAxis = merge({ inverse: true }, chartOptions.yAxis);
     }
   
     if (theme === "horizontalInverse") {
-      chartOptions.xAxis = merge({ inverse: true }, option.xAxis);
-      chartOptions.yAxis = merge({ position: "right" }, option.yAxis);
+      chartOptions.xAxis = merge({ inverse: true }, chartOptions.xAxis);
+      chartOptions.yAxis = merge({ position: "right" }, chartOptions.yAxis);
     }
     
     const chartOptionValueAxis: any = chartOptions[isVertical ? "yAxis" : "xAxis"];
@@ -212,14 +212,20 @@ export class AxisChart extends React.PureComponent<AxisChartProps, AxisChartStat
     const legendPadding = legendObj.legend.padding;
     const legendPaddingLeftRight = typeof legendPadding === "number"
       ? legendPadding
-      : legendPadding.length === 1
+      : (legendPadding as number[]).length === 1
         ? legendPadding[0]
-        : legendPadding.length === 2 || legendPadding.length === 3
+        : (legendPadding as number[]).length === 2 || (legendPadding as number[]).length === 3
           ? legendPadding[1]
           : legendPadding[1] + legendPadding[3];
     
     const legendNoPaddingWidth = legendObj.legend.width
-      ? legendObj.legend.width - legendPaddingLeftRight
+      ? (
+        `${legendObj.legend.width}`.includes("%")
+          ? chartWidth * parseFloat(legendObj.legend.width as string) / 100
+          : `${legendObj.legend.width}`.includes("px")
+            ? Number(`${legendObj.legend.width}`.replace("", "px"))
+            : 1
+      ) - legendPaddingLeftRight
       : chartWidth - legendPaddingLeftRight;
     
     let legendRows = 1;
@@ -262,9 +268,9 @@ export class AxisChart extends React.PureComponent<AxisChartProps, AxisChartStat
   
     const legendPaddingTopBottom = typeof legendPadding === "number"
       ? legendPadding
-      : legendPadding.length === 1
+      : (legendPadding as number[]).length === 1
         ? legendPadding[0]
-        : legendPadding.length === 2
+        : (legendPadding as number[]).length === 2
           ? legendPadding[0]
           : legendPadding[0] + legendPadding[2];
     
@@ -311,7 +317,7 @@ export class AxisChart extends React.PureComponent<AxisChartProps, AxisChartStat
       }
     }
     
-    if (isVertical && yAxisObj.yAxis.name) {
+    if (isVertical && (yAxisObj.yAxis as echarts.EChartOption.YAxis).name) {
       autoCalcGridObj.top += (15 + valueAxisNameFontSize - (valueAxisLabelFontSize / 2));
     }
     
