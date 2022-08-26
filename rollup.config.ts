@@ -6,7 +6,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import { babel } from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser"; // 压缩打包文件
 
-const input = "src/index.tsx";
+const input = "src/flex-chart/index.tsx";
 const deps = Object.keys({ ...pkg.dependencies });
 const external = (id: string) => deps.some((dep) => id.startsWith(dep));
 const plugins = [

@@ -13,7 +13,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist coverage && rollup -c --configPlugin @rollup/plugin-typescript"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "okPublish": "npm run build && npm run publish --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
     "@types/echarts": "^4.9.16",
@@ -27,39 +29,50 @@
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.3.1",
-    "@testing-library/react": "^13.0.0",
-    "@types/node": "^17.0.23",
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
-    "@types/react-native": "^0.69.3",
-    "@types/use-sync-external-store": "^0.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
-    "@typescript-eslint/parser": "^5.18.0",
-    "c8": "^7.11.0",
-    "eslint": "^8.12.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-react-hooks": "^4.4.0",
-    "jsdom": "^19.0.0",
-    "prettier": "^2.6.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-native": "^0.69.1",
-    "rollup": "^2.70.1",
-    "rollup-plugin-dts": "^4.2.0",
+    "@rollup/plugin-typescript": "^8.4.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "rollup": "^2.78.1",
+    "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.3.1",
-    "typescript": "^4.6.3",
-    "vitest": "^0.9.0"
+    "typescript": "^4.7.4"
   },
+  "proxy": "http://localhost:3000/lsbFlying/flex-chart",
   "eslintIgnore": [
     "dist"
   ],
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "license": "MIT",
   "keywords": [
     "echarts",
     "echarts-for-react",
-    "charts"
-  ]
+    "charts",
+    "react-echarts",
+    "react"
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
