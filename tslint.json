@@ -1,0 +1,142 @@
+{
+    "extends": [],
+    "plugins": [
+      "react-hooks"
+    ],
+    "rules": {
+        "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+        "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
+        "quotemark": [
+            true,
+            "double"
+        ],
+        "indent": [true, "spaces", 2],
+        "no-unused-variable": false,
+        "strict-boolean-expressions": false,
+        "variable-name": [
+            false,
+            "ban-keywords",
+            "check-format",
+            "allow-trailing-underscore"
+        ],
+        "array-type": [
+            true,
+            "array"
+        ],
+        "naming-convention": [
+            true,
+            {
+                "type": "default",
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "forbid",
+                "trailingUnderscore": "allow"
+            },
+            {
+                "type": "variable",
+                "modifiers": [
+                    "local"
+                ],
+                "format": [
+                    "camelCase"
+                ],
+                "leadingUnderscore": "allow",
+                "final": true
+            },
+            {
+                "type": "variable",
+                "modifiers": [
+                    "global",
+                    "const"
+                ],
+                "format": [
+                    "UPPER_CASE",
+                    "camelCase",
+                    "PascalCase"
+                ]
+            },
+            {
+                "type": "variable",
+                "modifiers": [
+                    "export",
+                    "const"
+                ],
+                "format": [
+                    "UPPER_CASE",
+                    "camelCase",
+                    "PascalCase"
+                ]
+            },
+            {
+                "type": "functionVariable",
+                "format": [
+                    "camelCase"
+                ]
+            },
+            {
+                "type": "parameter",
+                "format": [
+                    "camelCase"
+                ]
+            },
+            {
+                "type": "type",
+                "format": [
+                    "PascalCase"
+                ]
+            },
+            {
+                "type": "enumMember",
+                "format": [
+                    "PascalCase"
+                ]
+            },
+            {
+                "type": "method",
+                "filter": "^toJSON$",
+                "format": null,
+                "trailingUnderscore": "allow"
+            }
+        ],
+        "no-floating-promises": false,
+        "match-default-export-name": false,
+        "no-boolean-literal-compare": false,
+        "completed-docs": [
+            true, {
+                "classes": true,
+                "functions": {"visibilities": ["exported"]},
+                "methods":{
+                    "locations": ["simply-typed"],
+                    "ignores":[
+                        {"prefix": "render"},
+                        {"prefix": "component"},
+                        {"prefix": "shouldComponentUpdate", "suffix":"shouldComponentUpdate"},
+                        {"prefix": "getChartOption", "suffix":"getChartOption"}
+                    ]
+                },
+                "properties": {
+                    "locations": ["simply-typed"],
+                    "ignores":[
+                        {"prefix": "state", "suffix":"state"},
+                        {"prefix": "defaultProps", "suffix":"defaultProps"},
+                        {"prefix": "background", "suffix":"background"},
+                        {"prefix": "color", "suffix":"color"},
+                        {"prefix": "name", "suffix":"name"},
+                        {"prefix": "key", "suffix":"key"},
+                        {"prefix": "value", "suffix":"value"}
+                    ]
+                }
+            }
+        ]
+    },
+    "linterOptions": {
+        "exclude": [
+            "src/**/*.test.ts",
+            "**/test/**.ts",
+            "**/*.d.ts",
+            "src/**/*.js",
+            "node_modules/**"
+        ]
+    }
+}

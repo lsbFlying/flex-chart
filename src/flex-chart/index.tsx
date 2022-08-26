@@ -11,7 +11,7 @@ import {
 import {convertNumToThousand, exactCalcStrFontCount, fit} from "./utils";
 import {EChartsType} from "echarts/types/dist/echarts";
 
-export class AxisChart extends React.PureComponent<AxisChartProps, AxisChartState> {
+export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartState> {
   
   static defaultProps = {
     data: [],
