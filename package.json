@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "rm -rf dist coverage && rollup -c --configPlugin @rollup/plugin-typescript",
     "okPublish": "npm run build && npm run publish --registry=https://registry.npmjs.org/"
   },
   "dependencies": {
