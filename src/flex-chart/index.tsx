@@ -11,6 +11,13 @@ import {
 import {convertNumToThousand, exactCalcStrFontCount, fit} from "./utils";
 import {EChartsType} from "echarts/types/dist/echarts";
 
+/**
+ * FlexChart
+ * @author: liushanbao<1262300490@qq.com>
+ * @extends React.PureComponent
+ * @class FlexChart
+ * @description 封装echarts的自动化布局处理的灵活图表
+ */
 export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartState> {
   
   static defaultProps = {
