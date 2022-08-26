@@ -37,9 +37,9 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
   private myObserver: ResizeObserverType | null = null;
   
   componentDidMount() {
-    const { resizeObserver } = this.props;
+    const { resizeObserver, initOpts } = this.props;
     const { containerRef } = this.state;
-    this.chartsInstance = echarts.init(containerRef.current as HTMLElement);
+    this.chartsInstance = echarts.init(containerRef.current as HTMLDivElement | HTMLCanvasElement, undefined, initOpts);
     if (resizeObserver) {
       this.myObserver = new ResizeObserver(() => {
         (this.chartsInstance as EChartsType).resize();
@@ -52,13 +52,13 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
   }
   
   componentDidUpdate(prevProps: Readonly<AxisChartProps>) {
-    const { autoFit, mergeOption, theme, option, data, categoryData, pureData, resizeObserver } = this.props;
+    const { autoFit, mergeOption, theme, options, data, categoryData, pureData, resizeObserver } = this.props;
     const {
-      autoFit: prevAutoFit, mergeOption: prevMergeOption, theme: prevTheme, option: prevOption,
+      autoFit: prevAutoFit, mergeOption: prevMergeOption, theme: prevTheme, options: prevOptions,
       data: prevData, categoryData: prevCategoryData, pureData: prevPureData, resizeObserver: prevResizeObserver
     } = prevProps;
     if (
-      data !== prevData || categoryData !== prevCategoryData || option !== prevOption
+      data !== prevData || categoryData !== prevCategoryData || options !== prevOptions
       || theme !== prevTheme || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
       || pureData !== prevPureData || resizeObserver !== prevResizeObserver
     ) {
@@ -94,7 +94,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = () => {
-    const { theme, data, option, categoryData, pureData } = this.props;
+    const { theme, data, options, categoryData, pureData, seriesTypes } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     /**
      * 如果外界没有给出类目数据，则会默认遍历map处理找出类目轴数据，
@@ -108,7 +108,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
     let maxLongSeriesNameCount = 0;
     let maxValue = 0;
     const seriesNames: string[] = [];
-    const seriesData = data.map(item => {
+    const seriesData = data.map((item, index) => {
       const res = `${item.name}`;
       seriesNames.push(res);
       maxLongSeriesNameCount = Math.max(exactCalcStrFontCount(res), maxLongSeriesNameCount);
@@ -119,8 +119,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
       return {
         ...item,
         data: !isVertical ? reverse(item.data) : item.data,
-        // type: "line",
-        type: "bar",
+        type: seriesTypes?.[index] || "bar",
       };
     });
     
@@ -130,7 +129,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
         confine: true,
       },
       series: seriesData,
-    }, option);
+    }, options);
     
     if (theme === "verticalInverse") {
       chartOptions.xAxis = merge({ position: "top" }, chartOptions.xAxis);

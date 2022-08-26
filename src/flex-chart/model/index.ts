@@ -5,6 +5,11 @@ import {EChartOption} from "echarts";
 export * from "./icss";
 
 export interface AxisChartProps extends AxisChartICSS {
+  /**
+   * 系列数据类型
+   * 如果没有则默认都是bar柱类型系列
+   */
+  seriesTypes?: SeriesTypes[];
   /** 数据源 */
   data: AxisChartData[];
   /** 类目轴数据 */
@@ -20,10 +25,16 @@ export interface AxisChartProps extends AxisChartICSS {
    * 所以不需要额外内存监听容器尺寸的变化，节省内存开销
    */
   resizeObserver?: boolean;
-  /** echarts的配置参数(echarts官方文档上的配置项) */
-  option?: EChartOption;
-  /** echarts初始化参数配置 */
-  // initOpts?: EChartsInitOpts;
+  /**
+   * echarts的配置参数(echarts官方文档上的配置项)
+   * todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
+   */
+  options?: EChartOption;
+  /**
+   * echarts初始化参数配置
+   * todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
+   */
+  initOpts?: echartsInitOpts;
   /**
    * 主题(垂直/水平/垂直反向/水平反向)
    * 权重级别比option低，即如果option里面的配置影响了布局尺寸设置
@@ -68,3 +79,12 @@ export interface AxisChartData {
   /** 该系列数据 */
   data: AxisChartDataItem[] | (number | string | null)[];
 }
+
+export interface echartsInitOpts {
+  devicePixelRatio?: number | undefined;
+  renderer?: string | undefined;
+  width?: number | string | undefined;
+  height?: number | string | undefined;
+}
+
+export type SeriesTypes = "bar" | "line";

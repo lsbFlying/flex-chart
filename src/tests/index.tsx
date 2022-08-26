@@ -18,13 +18,17 @@ const Test = () => {
       <div className="testAxisChart">
         <FlexChart
           // vertical/horizontal/verticalInverse/horizontalInverse
-          theme="horizontal"
-          data={testData3}
+          // theme="horizontalInverse"
+          data={testData2}
+          seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
           // pureData={false}
           autoFit={autoFit}
           // legendPlacement="left"
-          option={{
+          options={{
+            // grid: {
+            //   top: 50,
+            // },
             xAxis: {
               axisLabel: {
                 // color: "red",
