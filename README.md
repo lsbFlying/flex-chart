@@ -25,6 +25,10 @@ npm i flex-chart
 npm install --save echarts
 ```
 
+### features
+- 自动化布局处理边界尺寸问题
+- 页面布局尺寸变化自动化调整
+
 ### Usage
 ```tsx
 import { FlexChart } from "flex-chart";

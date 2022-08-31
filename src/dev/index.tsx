@@ -1,30 +1,31 @@
 import React, {useState} from "react";
 import "./index.css";
 import { FlexChart } from "../flex-chart";
-import { round } from "lodash";
 import { testCategoryData, testData1, testData2 } from "./testData";
 
 /**
  * Dev
  */
 const Dev = () => {
-  const [autoFit, setAutoFit] = useState(false);
+  const [data, setData] = useState<any>(testData1);
   
   return (
     <div className="wrap">
-      {/*<div>*/}
-      {/*  <button onClick={() => setAutoFit(!autoFit)}>测试按钮</button>*/}
-      {/*</div>*/}
+      <div className="btnWrap">
+        <button onClick={() => setData(testData1)}>数据1</button>
+        <button onClick={() => setData(testData2)}>数据2</button>
+      </div>
       <div className="testFlexChart">
         <FlexChart
           // vertical/horizontal/verticalInverse/horizontalInverse
           // theme="horizontalInverse"
+          // autoFit
           resizeObserver
-          data={testData1}
+          mergeOption={false}
+          data={data}
           seriesTypes="line"
           // seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
-          autoFit={autoFit}
           // legendPlacement="left"
           options={{
             // grid: {
@@ -51,18 +52,18 @@ const Dev = () => {
             },
             yAxis: {
               name: "单位：件数",
-              axisLabel: {
-                // margin: 18,
-                formatter: (value: number) => {
-                  let valueTemp = `${value}`;
-                  if (value >= 10000 && value < 10000000) {
-                    valueTemp = `${round(value / 10000, 2)}W`;
-                  } else if (value >= 10000000) {
-                    valueTemp = `${round(value / 10000000, 2)}KW`;
-                  }
-                  return valueTemp;
-                },
-              },
+              // axisLabel: {
+              //   // margin: 18,
+              //   formatter: (value: number) => {
+              //     let valueTemp = `${value}`;
+              //     if (value >= 10000 && value < 10000000) {
+              //       valueTemp = `${round(value / 10000, 2)}W`;
+              //     } else if (value >= 10000000) {
+              //       valueTemp = `${round(value / 10000000, 2)}KW`;
+              //     }
+              //     return valueTemp;
+              //   },
+              // },
               // position: "right",
               // inverse: true,
             },
