@@ -55,13 +55,15 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
-    const { autoFit, mergeOption, theme, options, data, categoryData, resizeObserver } = this.props;
+    const { autoFit, mergeOption, theme, options, data, categoryData, resizeObserver, lineSeries, barSeries } = this.props;
     const {
       autoFit: prevAutoFit, mergeOption: prevMergeOption, theme: prevTheme, options: prevOptions,
-      data: prevData, categoryData: prevCategoryData, resizeObserver: prevResizeObserver
+      data: prevData, categoryData: prevCategoryData, resizeObserver: prevResizeObserver,
+      lineSeries: prevLineSeries, barSeries: prevBarSeries
     } = prevProps;
     if (
-      data !== prevData || categoryData !== prevCategoryData || options !== prevOptions
+      data !== prevData || categoryData !== prevCategoryData
+      || lineSeries !== prevLineSeries || barSeries !== prevBarSeries || options !== prevOptions
       || theme !== prevTheme || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
       || resizeObserver !== prevResizeObserver
     ) {
@@ -100,7 +102,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = () => {
-    const { theme, data, options, categoryData, seriesTypes } = this.props;
+    const { theme, data, options, categoryData, seriesTypes, lineSeries, barSeries } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     
     // data数据是否是单个维度的纯数据
@@ -126,15 +128,20 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
         ? Math.max(...(item.data as number[]))
         : Math.max(...((item.data as FlexChartDataObject[]).map(item1 => item1.value) as number[]));
       maxValue = Math.max((curDataMax as number) || 0, maxValue);
+      
+      const type = seriesTypes
+        ? typeof seriesTypes === "string"
+          ? seriesTypes
+          : (seriesTypes?.[index] || "bar")
+        : "bar";
+      
+      const otherOption = options?.series?.[index] || (type === "line" ? lineSeries : barSeries);
+      
       return {
         ...item,
         data: !isVertical ? item.data.reverse() : item.data,
-        type: seriesTypes
-          ? typeof seriesTypes === "string"
-            ? seriesTypes
-            : (seriesTypes?.[index] || "bar")
-          : "bar",
-        ...options?.series?.[index],
+        type,
+        ...otherOption,
       };
     });
     

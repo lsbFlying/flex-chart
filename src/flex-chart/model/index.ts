@@ -1,12 +1,16 @@
 import {RefObject} from "react";
 import {FlexChartICSS} from "./icss";
-import {EChartOption} from "echarts";
+import {EChartOption, LineSeriesOption, BarSeriesOption} from "echarts";
 
 export interface FlexChartProps extends FlexChartICSS {
   /**
    * 系列数据类型，默认是bar柱类型系列
    */
   seriesTypes?: SeriesTypes | SeriesTypes[];
+  /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  lineSeries?: LineSeriesOption;
+  /** 如果单纯是bar系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  barSeries?: BarSeriesOption;
   /**
    * @description 数据源
    *

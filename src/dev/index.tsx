@@ -23,10 +23,12 @@ const Dev = () => {
           resizeObserver
           mergeOption={false}
           data={data}
-          seriesTypes="line"
+          // seriesTypes="line"
           // seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
           // legendPlacement="left"
+          // lineSeries={{symbol: "triangle"}}
+          barSeries={{barWidth: 12}}
           options={{
             // grid: {
             //   top: 50,
@@ -80,7 +82,7 @@ const Dev = () => {
               // itemWidth: 0,
               // itemGap: 0,
               // top: 0,
-              bottom: 0,
+              // bottom: 0,
               // left: 0,
               // right: 0,
               // width: 190,
