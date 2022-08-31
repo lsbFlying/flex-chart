@@ -1,6 +1,6 @@
 import {RefObject} from "react";
 import {FlexChartICSS} from "./icss";
-import {EChartOption, LineSeriesOption, BarSeriesOption} from "echarts";
+import {EChartOption} from "echarts";
 // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
 
 export interface FlexChartProps extends FlexChartICSS {
@@ -21,9 +21,9 @@ export interface FlexChartProps extends FlexChartICSS {
    */
   seriesTypes?: SeriesTypes | SeriesTypes[];
   /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
-  lineSeries?: LineSeriesOption;
+  lineSeries?: EChartOption.SeriesLine;
   /** 如果单纯是bar系列的数据，则不想通过series的数组设置的话可以统一设置 */
-  barSeries?: BarSeriesOption;
+  barSeries?: EChartOption.SeriesBar;
   /**
    * @description 是否开启容器尺寸变化监听，页面resize的话容器自然也会可能触发容器的resize
    * 所以监听容器的resize更彻底准确，但是一般而言页面布局可能没有那么复杂
