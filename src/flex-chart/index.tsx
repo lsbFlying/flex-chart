@@ -352,7 +352,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     const gridObj = {
       grid: merge(autoCalcGridObj, chartOptions.grid),
     };
-    console.log(gridObj, legendObj)
+    
     return {
       ...chartOptions,
       ...gridObj,

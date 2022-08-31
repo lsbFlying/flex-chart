@@ -28,7 +28,7 @@ const Dev = () => {
           // categoryData={testCategoryData}
           // legendPlacement="left"
           // lineSeries={{symbol: "triangle"}}
-          barSeries={{barWidth: 12}}
+          // barSeries={{barWidth: 12}}
           options={{
             // grid: {
             //   top: 50,
@@ -69,12 +69,13 @@ const Dev = () => {
               // position: "right",
               // inverse: true,
             },
-            tooltip: {
-              trigger: "axis",
-              axisPointer: {
-                type: "line",
-              },
-            },
+            // tooltip: {
+            //   trigger: "axis",
+            //   axisPointer: {
+            //     // type: "line",
+            //     type: "shadow",
+            //   },
+            // },
             // grid: {
             //   bottom: 20,
             // },

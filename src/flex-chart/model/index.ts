@@ -1,16 +1,9 @@
 import {RefObject} from "react";
 import {FlexChartICSS} from "./icss";
 import {EChartOption, LineSeriesOption, BarSeriesOption} from "echarts";
+// todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
 
 export interface FlexChartProps extends FlexChartICSS {
-  /**
-   * 系列数据类型，默认是bar柱类型系列
-   */
-  seriesTypes?: SeriesTypes | SeriesTypes[];
-  /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
-  lineSeries?: LineSeriesOption;
-  /** 如果单纯是bar系列的数据，则不想通过series的数组设置的话可以统一设置 */
-  barSeries?: BarSeriesOption;
   /**
    * @description 数据源
    *
@@ -24,6 +17,14 @@ export interface FlexChartProps extends FlexChartICSS {
    */
   categoryData?: (string | number)[];
   /**
+   * 系列数据类型，默认是bar柱类型系列
+   */
+  seriesTypes?: SeriesTypes | SeriesTypes[];
+  /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  lineSeries?: LineSeriesOption;
+  /** 如果单纯是bar系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  barSeries?: BarSeriesOption;
+  /**
    * @description 是否开启容器尺寸变化监听，页面resize的话容器自然也会可能触发容器的resize
    * 所以监听容器的resize更彻底准确，但是一般而言页面布局可能没有那么复杂
    * 所以不需要额外内存监听容器尺寸的变化，节省内存开销
@@ -31,15 +32,9 @@ export interface FlexChartProps extends FlexChartICSS {
    * 所以一般而言无复杂情况业务则不需要开启resizeObserver
    */
   resizeObserver?: boolean;
-  /**
-   * echarts的配置参数(echarts官方文档上的配置项)
-   * todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
-   */
+  /** echarts的配置参数(echarts官方文档上的配置项) */
   options?: EChartOption;
-  /**
-   * echarts初始化参数配置
-   * todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
-   */
+  /** echarts初始化参数配置 */
   initOpts?: echartsInitOpts;
   /**
    * @description 主题(垂直/水平/垂直反向/水平反向)，非echarts初始化时的主题设置，而是FlexChart本身的主题配置
