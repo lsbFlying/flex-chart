@@ -51,7 +51,7 @@ const Dev = () => {
               // inverse: true,
             },
             yAxis: {
-              name: "单位：件数",
+              // name: "单位：件数",
               // axisLabel: {
               //   // margin: 18,
               //   formatter: (value: number) => {
@@ -80,7 +80,7 @@ const Dev = () => {
               // itemWidth: 0,
               // itemGap: 0,
               // top: 0,
-              // bottom: 0,
+              bottom: 0,
               // left: 0,
               // right: 0,
               // width: 190,

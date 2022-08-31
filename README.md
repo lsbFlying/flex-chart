@@ -33,40 +33,63 @@ npm install --save echarts
 ```tsx
 import { FlexChart } from "flex-chart";
 
+/**
+ * @description data can be directly the value of a single dimension
+ * @example
+ * const testData = [
+ *   {
+ *     name: "销量",
+ *     data: [1, 2, 3]
+ *   },
+ *   {
+ *     name: "库存",
+ *     data: [4, 5, 6]
+ *   },
+ * ];
+ */
 const testData = [
   {
-    name: "衣物销量",
+    name: "衣物衣物衣物衣物衣物销量",
     data: [
-      { name: "衬衫", value: 5 },
-      { name: "羊毛衫", value: 20 },
-      { name: "雪纺衫", value: 36 },
-      { name: "裤子", value: 10 },
-      { name: "高跟鞋", value: 10 },
-      { name: "袜子", value: 56 },
-    ],
-    // todo data can be directly the value of a single dimension
-    // data: [5, 20, 36, 10, 10, 56].
-  },
-  {
-    name: "衣物库存",
-    data: [
-      { name: "衬衫", value: 2 },
-      { name: "羊毛衫", value: 9 },
-      { name: "雪纺衫", value: 17 },
-      { name: "裤子", value: 3 },
-      { name: "高跟鞋", value: 28 },
-      { name: "袜子", value: 12 },
+      { name: "衬衫", value: 50 },
+      { name: "羊毛衫", value: 200 },
+      { name: "雪纺衫", value: 360 },
+      { name: "裤子", value: 100 },
+      { name: "高跟鞋", value: 100 },
+      { name: "袜子", value: 560 },
     ],
   },
   {
-    name: "衣物破损",
+    name: "衣物衣物衣物衣物衣物库存",
     data: [
-      { name: "衬衫", value: 5 },
-      { name: "羊毛衫", value: 23 },
-      { name: "雪纺衫", value: 8 },
-      { name: "裤子", value: 11 },
-      { name: "高跟鞋", value: 7 },
-      { name: "袜子", value: 32 },
+      { name: "衬衫", value: 20 },
+      { name: "羊毛衫", value: 90 },
+      { name: "雪纺衫", value: 170 },
+      { name: "裤子", value: 30 },
+      { name: "高跟鞋", value: 208 },
+      { name: "袜子", value: 120 },
+    ],
+  },
+  {
+    name: "衣物衣物衣物衣物衣物破损",
+    data: [
+      { name: "衬衫", value: 50 },
+      { name: "羊毛衫", value: 230 },
+      { name: "雪纺衫", value: 80 },
+      { name: "裤子", value: 101 },
+      { name: "高跟鞋", value: 70 },
+      { name: "袜子", value: 302 },
+    ],
+  },
+  {
+    name: "衣物衣物衣物衣物衣物回退",
+    data: [
+      { name: "衬衫", value: 37 },
+      { name: "羊毛衫", value: 113 },
+      { name: "雪纺衫", value: 59 },
+      { name: "裤子", value: 91 },
+      { name: "高跟鞋", value: 34 },
+      { name: "袜子", value: 207 },
     ],
   },
 ];

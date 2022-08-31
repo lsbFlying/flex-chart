@@ -25,7 +25,7 @@ const plugins = [
 const banner =
   "/**\n" +
   ` * ${pkg.name} v${pkg.version}\n` +
-  ` * 封装echarts的自动化布局处理的灵活图表\n` +
+  ` * 封装echarts的自动化布局处理的灵活图表，目前主要针对line与bar系列类型\n` +
   ` * created by ${pkg.author}\n` +
   ` * (c) 2020-${new Date().getFullYear()} ${pkg.author}\n` +
   ` * Released under the ${pkg.license} License.\n` +
