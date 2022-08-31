@@ -19,7 +19,7 @@ const Dev = () => {
         <FlexChart
           // vertical/horizontal/verticalInverse/horizontalInverse
           // theme="horizontalInverse"
-          // resizeObserver
+          resizeObserver
           data={testData1}
           seriesTypes="line"
           // seriesTypes={["bar", "line", "line"]}

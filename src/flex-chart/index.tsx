@@ -15,7 +15,7 @@ type EChartsType = echarts.ECharts;
  * @author: liushanbao<1262300490@qq.com>
  * @extends React.PureComponent
  * @class FlexChart
- * @description 封装echarts的自动化布局处理的灵活图表
+ * @description 封装echarts的自动化布局处理的灵活图表，主要针对line与bar系列类型
  */
 export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartState> {
   
