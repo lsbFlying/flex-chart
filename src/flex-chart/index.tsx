@@ -2,7 +2,7 @@ import React from "react";
 import * as echarts from "echarts";
 import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
-import {AxisChartDataItem, AxisChartProps, AxisChartState, ResizeObserverType} from "./model";
+import {FlexChartDataObject, FlexChartProps, FlexChartState, ResizeObserverType} from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
@@ -17,7 +17,7 @@ type EChartsType = echarts.ECharts;
  * @class FlexChart
  * @description 封装echarts的自动化布局处理的灵活图表
  */
-export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartState> {
+export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartState> {
   
   static defaultProps = {
     data: [],
@@ -26,7 +26,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
     autoFit: false,
   };
   
-  state: AxisChartState = {
+  state: FlexChartState = {
     containerRef: React.createRef<HTMLElement>(),
   };
   
@@ -54,16 +54,16 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
     }
   }
   
-  componentDidUpdate(prevProps: Readonly<AxisChartProps>) {
-    const { autoFit, mergeOption, theme, options, data, categoryData, pureData, resizeObserver } = this.props;
+  componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
+    const { autoFit, mergeOption, theme, options, data, categoryData, resizeObserver } = this.props;
     const {
       autoFit: prevAutoFit, mergeOption: prevMergeOption, theme: prevTheme, options: prevOptions,
-      data: prevData, categoryData: prevCategoryData, pureData: prevPureData, resizeObserver: prevResizeObserver
+      data: prevData, categoryData: prevCategoryData, resizeObserver: prevResizeObserver
     } = prevProps;
     if (
       data !== prevData || categoryData !== prevCategoryData || options !== prevOptions
       || theme !== prevTheme || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
-      || pureData !== prevPureData || resizeObserver !== prevResizeObserver
+      || resizeObserver !== prevResizeObserver
     ) {
       fit.autoFit = autoFit;
       this.handleChartOption();
@@ -97,14 +97,18 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = () => {
-    const { theme, data, options, categoryData, pureData, seriesTypes } = this.props;
+    const { theme, data, options, categoryData, seriesTypes } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
+    
+    // data数据是否是单个维度的纯数据
+    const pureData = (data[0]?.data?.[0] as FlexChartDataObject).name === undefined;
+    
     /**
      * 如果外界没有给出类目数据，则会默认遍历map处理找出类目轴数据，
      * 此时如果遇到大数据则会耗时，不建议，所以尽量在遇到大数据的情况下给出类目数据
      */
     const categoryDataArray = categoryData
-      || (pureData ? [] : (data[0]?.data as AxisChartDataItem[]).map(item => item.name));
+      || (pureData ? [] : (data[0]?.data as FlexChartDataObject[]).map(item => item.name));
     
     const isVertical = theme.includes("vertical");
     
@@ -117,12 +121,17 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
       maxLongSeriesNameCount = Math.max(exactCalcStrFontCount(res), maxLongSeriesNameCount);
       const curDataMax = pureData
         ? Math.max(...(item.data as number[]))
-        : Math.max(...((item.data as AxisChartDataItem[]).map(item1 => item1.value) as number[]));
+        : Math.max(...((item.data as FlexChartDataObject[]).map(item1 => item1.value) as number[]));
       maxValue = Math.max((curDataMax as number) || 0, maxValue);
       return {
         ...item,
         data: !isVertical ? item.data.reverse() : item.data,
-        type: seriesTypes?.[index] || "bar",
+        type: seriesTypes
+          ? typeof seriesTypes === "string"
+            ? seriesTypes
+            : (seriesTypes?.[index] || "bar")
+          : "bar",
+        ...options?.series?.[index],
       };
     });
     

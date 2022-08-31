@@ -5,7 +5,7 @@ import React from "react";
  * created by liushanbao
  * @author liushanbao
  */
-export interface AxisChartICSS {
+export interface FlexChartICSS {
   /** html id name */
   id?: string;
   /** html class name */
