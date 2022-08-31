@@ -2,7 +2,7 @@ import React from "react";
 import * as echarts from "echarts";
 import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
-import {AxisChartDataItem, AxisChartProps, AxisChartState, echartsInitOpts, ResizeObserverType} from "./model";
+import {AxisChartDataItem, AxisChartProps, AxisChartState, ResizeObserverType} from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
