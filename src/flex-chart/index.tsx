@@ -1,15 +1,14 @@
 import React from "react";
 import * as echarts from "echarts";
-import max from "lodash/max";
-import reverse from "lodash/reverse";
-import merge from "lodash/merge";
 import ResizeObserver from "resize-observer-polyfill";
-import {AxisChartDataItem, AxisChartProps, AxisChartState, ResizeObserverType} from "./model";
+import merge from "lodash.merge";
+import {AxisChartDataItem, AxisChartProps, AxisChartState, echartsInitOpts, ResizeObserverType} from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
 import {convertNumToThousand, exactCalcStrFontCount, fit} from "./utils";
-import {EChartsType} from "echarts/types/dist/echarts";
+
+type EChartsType = echarts.ECharts;
 
 /**
  * FlexChart
@@ -39,7 +38,11 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
   componentDidMount() {
     const { resizeObserver, initOpts } = this.props;
     const { containerRef } = this.state;
-    this.chartsInstance = echarts.init(containerRef.current as HTMLDivElement | HTMLCanvasElement, undefined, initOpts);
+    this.chartsInstance = echarts.init(
+      containerRef.current as HTMLDivElement | HTMLCanvasElement,
+      undefined,
+      initOpts as any,
+    );
     if (resizeObserver) {
       this.myObserver = new ResizeObserver(() => {
         (this.chartsInstance as EChartsType).resize();
@@ -113,12 +116,12 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
       seriesNames.push(res);
       maxLongSeriesNameCount = Math.max(exactCalcStrFontCount(res), maxLongSeriesNameCount);
       const curDataMax = pureData
-        ? max(item.data as number[])
-        : max((item.data as AxisChartDataItem[]).map(item1 => item1.value));
+        ? Math.max(...(item.data as number[]))
+        : Math.max(...((item.data as AxisChartDataItem[]).map(item1 => item1.value) as number[]));
       maxValue = Math.max((curDataMax as number) || 0, maxValue);
       return {
         ...item,
-        data: !isVertical ? reverse(item.data) : item.data,
+        data: !isVertical ? item.data.reverse() : item.data,
         type: seriesTypes?.[index] || "bar",
       };
     });
@@ -201,7 +204,7 @@ export class FlexChart extends React.PureComponent<AxisChartProps, AxisChartStat
         :
         {
           type: "category",
-          data: reverse(categoryDataArray),
+          data: categoryDataArray.reverse(),
           ...axisTickObj,
         }, chartOptions.yAxis),
     };

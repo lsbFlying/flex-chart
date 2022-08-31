@@ -20,18 +20,58 @@
 npm i flex-chart
 
 # yarn add flex-chart
+
+# `echarts` is the peerDependence of `flex-chart`, you can install echarts with your own version.
+npm install --save echarts
 ```
 
 ### Usage
 ```tsx
 import { FlexChart } from "flex-chart";
 
+const testData = [
+  {
+    name: "衣物销量",
+    data: [
+      { name: "衬衫", value: 5 },
+      { name: "羊毛衫", value: 20 },
+      { name: "雪纺衫", value: 36 },
+      { name: "裤子", value: 10 },
+      { name: "高跟鞋", value: 10 },
+      { name: "袜子", value: 56 },
+    ],
+    // todo data can be directly the value of a single dimension
+    // data: [5, 20, 36, 10, 10, 56].
+  },
+  {
+    name: "衣物库存",
+    data: [
+      { name: "衬衫", value: 2 },
+      { name: "羊毛衫", value: 9 },
+      { name: "雪纺衫", value: 17 },
+      { name: "裤子", value: 3 },
+      { name: "高跟鞋", value: 28 },
+      { name: "袜子", value: 12 },
+    ],
+  },
+  {
+    name: "衣物破损",
+    data: [
+      { name: "衬衫", value: 5 },
+      { name: "羊毛衫", value: 23 },
+      { name: "雪纺衫", value: 8 },
+      { name: "裤子", value: 11 },
+      { name: "高跟鞋", value: 7 },
+      { name: "袜子", value: 32 },
+    ],
+  },
+];
+
 function App() {
-  
   return (
-    <>
-      123
-    </>
+    <div style={{ width: "100%", height: "100%" }}>
+      <FlexChart data={testData}/>
+    </div>
   );
 }
 ```

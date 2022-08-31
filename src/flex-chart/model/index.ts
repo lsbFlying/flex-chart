@@ -2,8 +2,6 @@ import {RefObject} from "react";
 import {AxisChartICSS} from "./icss";
 import {EChartOption} from "echarts";
 
-export * from "./icss";
-
 export interface AxisChartProps extends AxisChartICSS {
   /**
    * 系列数据类型
@@ -81,10 +79,15 @@ export interface AxisChartData {
 }
 
 export interface echartsInitOpts {
-  devicePixelRatio?: number | undefined;
-  renderer?: string | undefined;
-  width?: number | string | undefined;
-  height?: number | string | undefined;
+  devicePixelRatio?: number;
+  renderer?: "canvas" | "svg";
+  width?: number | string | null;
+  height?: number | string | null;
+  useDirtyRect?: boolean; // 从 `5.0.0` 开始支持
+  ssr?: boolean;          // 从 `5.3.0` 开始支持
+  locale?: string;        // 从 `5.0.0` 开始支持
 }
 
 export type SeriesTypes = "bar" | "line";
+
+export * from "./icss";

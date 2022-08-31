@@ -17,12 +17,11 @@
     "build": "rm -rf dist coverage && rollup -c --configPlugin @rollup/plugin-typescript",
     "okPublish": "npm run build && npm publish --registry=https://registry.npmjs.org/"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "echarts": "^3.0.0 || ^4.0.0 || ^5.0.0"
+  },
   "dependencies": {
-    "@types/echarts": "^4.9.16",
-    "@types/lodash": "^4.14.175",
-    "echarts": "^5.2.2",
-    "lodash": "^4.17.21",
+    "lodash.merge": "^4.6.2",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
@@ -34,7 +33,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/echarts": "^4.9.16",
     "@types/jest": "^28.1.8",
+    "@types/lodash.merge": "^4.6.7",
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
@@ -62,7 +63,13 @@
     "echarts-for-react",
     "charts",
     "react-echarts",
-    "react"
+    "react",
+    "component",
+    "echarts-react",
+    "echarts",
+    "chart",
+    "graph",
+    "react-component"
   ],
   "browserslist": {
     "production": [

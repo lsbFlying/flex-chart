@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./index.css";
 import { FlexChart } from "../flex-chart";
 import { round } from "lodash";
-import { testCategoryData, testData2, testData3 } from "./testData";
+import { testCategoryData, testData1, testData2 } from "./testData";
 
 /**
  * Test
@@ -19,7 +19,7 @@ const Test = () => {
         <FlexChart
           // vertical/horizontal/verticalInverse/horizontalInverse
           // theme="horizontalInverse"
-          data={testData2}
+          data={testData1}
           seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
           // pureData={false}
