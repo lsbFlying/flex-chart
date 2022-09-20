@@ -6,16 +6,22 @@
   "author": "liushanbao <1262300490@qq.com>",
   "homepage": "https://github.com/lsbFlying/flex-chart",
   "bugs": "https://github.com/lsbFlying/flex-chart/issues",
-  "main": "dist/flex-chart.cjs.js",
-  "module": "dist/flex-chart.esm.js",
-  "types": "dist/flex-chart.d.ts",
+  "main": "lib/index.js",
+  "module": "esm/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "dist"
+    "lib",
+    "esm",
+    "src"
   ],
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist coverage && rollup -c --configPlugin @rollup/plugin-typescript",
-    "okPublish": "npm run build && npm publish --registry=https://registry.npmjs.org/"
+    "okPublish": "npm run build && npm publish --registry=https://registry.npmjs.org/",
+    "clean": "rimraf lib esm dist",
+    "lib": "run-p lib:*",
+    "lib:cjs": "tsc -p tsconfig.json --target ES5 --module commonjs --outDir lib",
+    "lib:esm": "tsc -p tsconfig.json --target ES5 --module ESNext --outDir esm",
+    "build": "npm run clean && npm run lib"
   },
   "peerDependencies": {
     "echarts": "^3.0.0 || ^4.0.0 || ^5.0.0"
@@ -25,11 +31,6 @@
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.18.6",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "@rollup/plugin-typescript": "^8.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
@@ -40,17 +41,18 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "echarts": "^5.3.3",
+    "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "rollup": "^2.78.1",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-terser": "^7.0.2",
+    "rimraf": "^3.0.2",
     "tslint": "^6.1.3",
     "typescript": "^4.7.4"
   },
   "eslintIgnore": [
-    "dist"
+    "dist",
+    "lib",
+    "esm"
   ],
   "eslintConfig": {
     "extends": [

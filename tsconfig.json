@@ -5,11 +5,15 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "lib",
 
     "allowJs": true,
     "skipLibCheck": true,
-    "noEmit": true,
+    "noEmit": false,
+    "inlineSources": true,
+    "sourceMap": true,
+    "declaration": true,
+    "importHelpers": true,
 
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -31,5 +35,6 @@
     "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true
   },
-  "exclude": ["node_modules", "dist", "coverage"]
+  "exclude": ["node_modules", "dist", "lib", "esm", "coverage"],
+  "include": ["src/flex-chart"]
 }
