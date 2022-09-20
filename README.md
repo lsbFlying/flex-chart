@@ -1,7 +1,7 @@
 <div align="center">
 <h1>FlexChart</h1>
 
-**re**act **s**tate eas**y**
+**Re**act **E**charts
 
 <h3>Chart with automatic boundary layout size processing (encapsulated echarts)</h3>
 
