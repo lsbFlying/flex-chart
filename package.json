@@ -1,6 +1,6 @@
 {
   "name": "flex-chart",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "Flexible charts that encapsulate the automated layout processing of echarts",
   "repository": "https://github.com/lsbFlying/flex-chart.git",
   "author": "liushanbao <1262300490@qq.com>",
