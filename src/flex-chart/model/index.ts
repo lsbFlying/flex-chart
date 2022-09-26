@@ -37,13 +37,13 @@ export interface FlexChartProps extends FlexChartICSS {
   /** echarts初始化参数配置 */
   initOpts?: echartsInitOpts;
   /**
-   * @description 主题(垂直/水平/垂直反向/水平反向)，非echarts初始化时的主题设置，而是FlexChart本身的主题配置
+   * @description 方向(垂直/水平/垂直反向/水平反向)，非echarts初始化时的主题设置，而是FlexChart本身的主题配置
    * 权重级别比option低，即如果option里面的配置影响了布局尺寸设置
-   * 会以option为主，theme的主题配置会失效，因为本身theme的主题设置是根据echarts的option实现的
+   * 会以option为主，direction的方向配置可能会失效，因为本身direction的方向设置是根据echarts的option实现的
    *
    * @default vertical
    */
-  theme: FlexChartTheme;
+  direction: FlexChartDirection;
   /**
    * @description 是否合并echarts配置项
    * 默认true合并，合并会提高渲染的效率，但是合并会影响图表数据渲染的准确性
@@ -62,7 +62,7 @@ export interface FlexChartProps extends FlexChartICSS {
   autoFit: boolean;
 }
 
-export type FlexChartTheme = "vertical" | "horizontal" | "verticalInverse" | "horizontalInverse";
+export type FlexChartDirection = "vertical" | "horizontal" | "verticalInverse" | "horizontalInverse";
 
 // 尺寸变化类型
 export interface ResizeObserverType {

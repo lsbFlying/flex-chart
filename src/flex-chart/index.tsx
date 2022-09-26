@@ -21,7 +21,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   
   static defaultProps = {
     data: [],
-    theme: "vertical",
+    direction: "vertical",
     mergeOption: true,
     autoFit: false,
   };
@@ -55,16 +55,16 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
-    const { autoFit, mergeOption, theme, options, data, categoryData, resizeObserver, lineSeries, barSeries } = this.props;
+    const { autoFit, mergeOption, direction, options, data, categoryData, resizeObserver, lineSeries, barSeries } = this.props;
     const {
-      autoFit: prevAutoFit, mergeOption: prevMergeOption, theme: prevTheme, options: prevOptions,
+      autoFit: prevAutoFit, mergeOption: prevMergeOption, direction: prevDirection, options: prevOptions,
       data: prevData, categoryData: prevCategoryData, resizeObserver: prevResizeObserver,
       lineSeries: prevLineSeries, barSeries: prevBarSeries
     } = prevProps;
     if (
       data !== prevData || categoryData !== prevCategoryData
       || lineSeries !== prevLineSeries || barSeries !== prevBarSeries || options !== prevOptions
-      || theme !== prevTheme || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
+      || direction !== prevDirection || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
       || resizeObserver !== prevResizeObserver
     ) {
       fit.autoFit = autoFit;
@@ -102,7 +102,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = () => {
-    const { theme, data, options, categoryData, seriesTypes, lineSeries, barSeries } = this.props;
+    const { direction, data, options, categoryData, seriesTypes, lineSeries, barSeries } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     
     // data数据是否是单个维度的纯数据
@@ -115,7 +115,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     const categoryDataArray = categoryData
       || (pureData ? [] : (data[0]?.data as FlexChartDataObject[]).map(item => item.name));
     
-    const isVertical = theme.includes("vertical");
+    const isVertical = direction.includes("vertical");
     
     let maxLongSeriesNameCount = 0;
     let maxValue = 0;
@@ -153,12 +153,12 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       series: seriesData,
     }, options);
     
-    if (theme === "verticalInverse") {
+    if (direction === "verticalInverse") {
       chartOptions.xAxis = merge({ position: "top" }, chartOptions.xAxis);
       chartOptions.yAxis = merge({ inverse: true }, chartOptions.yAxis);
     }
   
-    if (theme === "horizontalInverse") {
+    if (direction === "horizontalInverse") {
       chartOptions.xAxis = merge({ inverse: true }, chartOptions.xAxis);
       chartOptions.yAxis = merge({ position: "right" }, chartOptions.yAxis);
     }
