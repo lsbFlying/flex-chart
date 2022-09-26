@@ -20,7 +20,10 @@ const Dev = () => {
           // vertical/horizontal/verticalInverse/horizontalInverse
           // theme="horizontalInverse"
           // autoFit
-          resizeObserver
+          // autoResize
+          onEvents={{
+            click: () => {},
+          }}
           mergeOption={false}
           data={data}
           // seriesTypes="line"

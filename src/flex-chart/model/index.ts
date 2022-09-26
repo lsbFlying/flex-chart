@@ -41,7 +41,7 @@ export interface FlexChartProps extends FlexChartICSS {
   /** 图表加载，加载参数是图表实例，并且会随着实例的销毁重建而更新 */
   chartLoad?(chartsInstance: EChartsType): void;
   /** 事件绑定 */
-  onEvents?: Record<string, Function>;
+  onEvents?: Record<FlexChartEventsType, Function>;
   /**
    * @description 方向(垂直/水平/垂直反向/水平反向)，非echarts初始化时的主题设置，而是FlexChart本身的主题配置
    * 权重级别比option低，即如果option里面的配置影响了布局尺寸设置
@@ -67,6 +67,17 @@ export interface FlexChartProps extends FlexChartICSS {
    */
   autoFit: boolean;
 }
+
+export type FlexChartEventsType =
+  | "click"
+  | "dblclick"
+  | "mousedown"
+  | "mousemove"
+  | "mouseup"
+  | "mouseover"
+  | "mouseout"
+  | "globalout"
+  | "contextmenu";
 
 export type FlexChartDirection = "vertical" | "horizontal" | "verticalInverse" | "horizontalInverse";
 
