@@ -53,17 +53,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   async componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
-    const { initTheme, initOpts } = this.props;
-    const { initTheme: prevInitTheme, initOpts: prevInitOpts } = prevProps;
-    /**
-     * 以下属性修改的时候，需要 dispose 之后再新建
-     * 1. 切换样式主题 initTheme 的时候
-     * 2. 修改初始化配置 initOpts 的时候
-     * 3. 修改图表事件绑定 onEvents 的时候
-     */
-    if (!isEqual(initOpts, prevInitOpts) || !isEqual(initTheme, prevInitTheme)) {
-      await this.createNewChartInstance();
-    }
+    await this.createNewChartInstance(prevProps);
     this.rerenderOption(prevProps);
   }
   
@@ -108,10 +98,25 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   /** 创建新的图表实例 */
-  createNewChartInstance = async () => {
-    const { initOpts, initTheme } = this.props;
+  createNewChartInstance = async (prevProps?: Readonly<FlexChartProps>) => {
+    const { initTheme, initOpts, onEvents } = this.props;
+    const { initTheme: prevInitTheme, initOpts: prevInitOpts, onEvents: prevOnEvents } = prevProps || {};
     const { containerRef } = this.state;
-    this.chartsInstance?.dispose();
+    /**
+     * 以下属性修改的时候，需要 dispose 之后再新建
+     * 1. 切换样式主题 initTheme 的时候
+     * 2. 修改初始化配置 initOpts 的时候
+     * 3. 修改图表事件绑定 onEvents 的时候
+     */
+    if (
+      prevProps && (
+        !isEqual(initOpts, prevInitOpts)
+        || !isEqual(initTheme, prevInitTheme)
+        || !isEqual(onEvents, prevOnEvents)
+      )
+    ) {
+      this.chartsInstance?.dispose();
+    }
     this.chartsInstance = echarts.init(
       containerRef.current as HTMLDivElement | HTMLCanvasElement,
       initTheme,
