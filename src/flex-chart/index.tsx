@@ -3,11 +3,11 @@ import * as echarts from "echarts";
 import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
-import {FlexChartDataObject, FlexChartProps, FlexChartState, ResizeObserverType} from "./model";
+import { FlexChartDataObject, FlexChartProps, FlexChartState, ResizeObserverType } from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
-import {convertNumToThousand, exactCalcStrFontCount, fit} from "./utils";
+import { convertNumToThousand, exactCalcStrFontCount, fit } from "./utils";
 
 export type EChartsType = echarts.ECharts;
 

@@ -1,4 +1,4 @@
-import {fontSizeMap} from "../static";
+import { fontSizeMap } from "../static";
 
 /**
  * @description 自适应，在没有scale缩放页面屏幕的情况下使用

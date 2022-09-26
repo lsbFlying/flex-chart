@@ -1,7 +1,7 @@
-import {RefObject} from "react";
-import {FlexChartICSS} from "./icss";
-import {EChartOption} from "echarts"; // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
-import {EChartsType} from "../index";
+import { RefObject } from "react";
+import { FlexChartICSS } from "./icss";
+import { EChartOption } from "echarts"; // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
+import { EChartsType } from "../index";
 
 export interface FlexChartProps extends FlexChartICSS {
   /**
