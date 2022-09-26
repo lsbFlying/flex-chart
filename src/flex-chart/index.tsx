@@ -123,6 +123,13 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
       initOpts as any,
     );
+    for (const eventName in onEvents) {
+      if (Object.prototype.hasOwnProperty.call(onEvents, eventName)) {
+        this.chartsInstance?.on(eventName, (param: any) => {
+          onEvents[eventName](param, this.chartsInstance);
+        });
+      }
+    }
   }
   
   /** 图表参数配置 */
