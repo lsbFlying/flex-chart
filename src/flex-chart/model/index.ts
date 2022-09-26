@@ -1,7 +1,7 @@
 import {RefObject} from "react";
 import {FlexChartICSS} from "./icss";
-import {EChartOption} from "echarts";
-// todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
+import {EChartOption} from "echarts"; // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
+import {EChartsType} from "../index";
 
 export interface FlexChartProps extends FlexChartICSS {
   /**
@@ -31,11 +31,15 @@ export interface FlexChartProps extends FlexChartICSS {
    * 且该resize监听同时会触发setOption重新调整边界尺寸的计算，所以还是比较沉重的
    * 所以一般而言无复杂情况业务则不需要开启resizeObserver
    */
-  resizeObserver?: boolean;
+  autoResize?: boolean;
   /** echarts的配置参数(echarts官方文档上的配置项) */
   options?: EChartOption;
   /** echarts初始化参数配置 */
   initOpts?: echartsInitOpts;
+  /** 初始化的样式主题 */
+  initTheme?: string | object;
+  /** 图表加载，加载参数是图表实例，并且会随着实例的销毁重建而更新 */
+  chartLoad?(chartsInstance: EChartsType): void;
   /**
    * @description 方向(垂直/水平/垂直反向/水平反向)，非echarts初始化时的主题设置，而是FlexChart本身的主题配置
    * 权重级别比option低，即如果option里面的配置影响了布局尺寸设置

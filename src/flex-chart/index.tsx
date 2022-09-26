@@ -8,7 +8,7 @@ import {
 } from "./option";
 import {convertNumToThousand, exactCalcStrFontCount, fit} from "./utils";
 
-type EChartsType = echarts.ECharts;
+export type EChartsType = echarts.ECharts;
 
 /**
  * FlexChart
@@ -33,39 +33,56 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   /** 图表实例 */
   private chartsInstance: EChartsType | null = null;
   /** 外层容器尺寸变化容器监听的事件实例 */
-  private myObserver: ResizeObserverType | null = null;
+  private chartResizeObserver: ResizeObserverType | null = null;
   
   componentDidMount() {
-    const { resizeObserver, initOpts } = this.props;
+    const { autoResize, initOpts, initTheme, chartLoad } = this.props;
     const { containerRef } = this.state;
     this.chartsInstance = echarts.init(
       containerRef.current as HTMLDivElement | HTMLCanvasElement,
-      undefined,
+      initTheme,
+      // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
       initOpts as any,
     );
-    if (resizeObserver) {
-      this.myObserver = new ResizeObserver(() => {
+    chartLoad?.(this.chartsInstance);
+    if (autoResize) {
+      this.chartResizeObserver = new ResizeObserver(() => {
         (this.chartsInstance as EChartsType).resize();
         this.handleChartOption();
       });
-      this.myObserver.observe(containerRef.current as Element);
+      this.chartResizeObserver.observe(containerRef.current as Element);
     } else {
       this.handleChartOption();
     }
   }
   
   componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
-    const { autoFit, mergeOption, direction, options, data, categoryData, resizeObserver, lineSeries, barSeries } = this.props;
     const {
+      initTheme, initOpts,
+      autoFit, mergeOption, direction, options, data, categoryData, autoResize, lineSeries, barSeries,
+    } = this.props;
+    const {
+      initTheme: prevInitTheme, initOpts: prevInitOpts,
       autoFit: prevAutoFit, mergeOption: prevMergeOption, direction: prevDirection, options: prevOptions,
-      data: prevData, categoryData: prevCategoryData, resizeObserver: prevResizeObserver,
+      data: prevData, categoryData: prevCategoryData, autoResize: prevAutoResize,
       lineSeries: prevLineSeries, barSeries: prevBarSeries
     } = prevProps;
+    /**
+     * 以下属性修改的时候，需要 dispose 之后再新建
+     * 1. 切换样式主题 initTheme 的时候
+     * 2. 修改初始化配置 initOpts 的时候
+     * 3. 修改图表事件绑定 onEvents 的时候
+     */
+    // 在数据量较少的情况下，JSON.stringify是性价比相对较高的方式
+    if (
+      JSON.stringify(initOpts) !== JSON.stringify(prevInitOpts)
+      || JSON.stringify(initTheme) !== JSON.stringify(prevInitTheme)
+    ) {}
     if (
       data !== prevData || categoryData !== prevCategoryData
       || lineSeries !== prevLineSeries || barSeries !== prevBarSeries || options !== prevOptions
       || direction !== prevDirection || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
-      || resizeObserver !== prevResizeObserver
+      || autoResize !== prevAutoResize
     ) {
       fit.autoFit = autoFit;
       this.handleChartOption();
@@ -75,7 +92,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   componentWillUnmount() {
     const { containerRef } = this.state;
     (this.chartsInstance as EChartsType).dispose();
-    this.myObserver?.unobserve(containerRef.current as Element);
+    this.chartResizeObserver?.unobserve(containerRef.current as Element);
   }
   
   render() {
