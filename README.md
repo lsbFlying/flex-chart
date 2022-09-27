@@ -37,13 +37,13 @@ import { FlexChart } from "flex-chart";
  * @description data can be directly the value of a single dimension
  * @example
  * const testData = [
- *   {name: "销量", data: [1, 2, 3]},
- *   {name: "库存", data: [4, 5, 6]},
+ *   {name: "salesVolume", data: [1, 2, 3]},
+ *   {name: "stock", data: [4, 5, 6]},
  * ];
  */
 const testData = [
   {
-    name: "衣物衣物衣物衣物衣物销量",
+    name: "ClothingClothingSalesVolume",
     data: [
       {name: "衬衫", value: 50}, {name: "羊毛衫", value: 200},
       {name: "雪纺衫", value: 360}, {name: "裤子", value: 100},
@@ -51,27 +51,27 @@ const testData = [
     ],
   },
   {
-    name: "衣物衣物衣物衣物衣物库存",
+    name: "ClothingClothingStock",
     data: [
-      {name: "衬衫", value: 20}, {name: "羊毛衫", value: 90},
-      {name: "雪纺衫", value: 170}, {name: "裤子", value: 30},
-      {name: "高跟鞋", value: 208}, {name: "袜子", value: 120},
+      {name: "shirt", value: 20}, {name: "cardigan", value: 90},
+      {name: "chiffon-shirt", value: 170}, {name: "trousers", value: 30},
+      {name: "high-heeled-shoes", value: 208}, {name: "socks", value: 120},
     ],
   },
   {
-    name: "衣物衣物衣物衣物衣物破损",
+    name: "ClothingClothingDamage",
     data: [
-      {name: "衬衫", value: 50}, {name: "羊毛衫", value: 230},
-      {name: "雪纺衫", value: 80}, {name: "裤子", value: 101},
-      {name: "高跟鞋", value: 70}, {name: "袜子", value: 302},
+      {name: "shirt", value: 50}, {name: "cardigan", value: 230},
+      {name: "chiffon-shirt", value: 80}, {name: "trousers", value: 101},
+      {name: "high-heeled-shoes", value: 70}, {name: "socks", value: 302},
     ],
   },
   {
-    name: "衣物衣物衣物衣物衣物回退",
+    name: "ClothingClothingReturn",
     data: [
-      {name: "衬衫", value: 37}, {name: "羊毛衫", value: 113},
-      {name: "雪纺衫", value: 59}, {name: "裤子", value: 91},
-      {name: "高跟鞋", value: 34}, {name: "袜子", value: 207},
+      {name: "shirt", value: 37}, {name: "cardigan", value: 113},
+      {name: "chiffon-shirt", value: 59}, {name: "trousers", value: 91},
+      {name: "high-heeled-shoes", value: 34}, {name: "socks", value: 207},
     ],
   },
 ];
@@ -79,7 +79,9 @@ const testData = [
 function App() {
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <FlexChart data={testData}/>
+      <FlexChart
+        data={testData}
+      />
     </div>
   );
 }
