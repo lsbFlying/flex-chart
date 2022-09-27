@@ -4,7 +4,8 @@ import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
 import {
-  FlexChartDataObject, FlexChartEventsType, FlexChartProps, FlexChartState, ResizeObserverType,
+  EventParams,
+  FlexChartDataObject, FlexChartEventsFuncType, FlexChartProps, FlexChartState, ResizeObserverType,
 } from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
@@ -127,9 +128,17 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     );
     for (const eventName in onEvents) {
       if (Object.prototype.hasOwnProperty.call(onEvents, eventName)) {
-        this.chartsInstance?.on(eventName, (param: any) => {
-          onEvents[eventName as keyof FlexChartEventsType](param, this.chartsInstance);
-        });
+        // @ts-ignore
+        const item: FlexChartEventsFuncType = onEvents[eventName];
+        if (item.query) {
+          this.chartsInstance?.on(eventName, item.query, (params: EventParams) => {
+            item.handle(params, this.chartsInstance as EChartsType);
+          });
+        } else {
+          this.chartsInstance?.on(eventName, (params: EventParams) => {
+            item.handle(params, this.chartsInstance as EChartsType);
+          });
+        }
       }
     }
   }

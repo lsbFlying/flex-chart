@@ -22,7 +22,13 @@ const Dev = () => {
           // autoFit
           // autoResize
           onEvents={{
-            click: () => {},
+            click: {
+              // query的用法风格，可以看注解的示例
+              // query: ?,
+              handle: (params, chartsInstance) => {
+                console.log(params, chartsInstance);
+              },
+            },
           }}
           mergeOption={false}
           data={data}
