@@ -69,15 +69,15 @@ export interface FlexChartProps extends FlexChartICSS {
 }
 
 export interface FlexChartEventsType {
-  click?: FlexChartEventsFuncType;
-  dblclick?: FlexChartEventsFuncType;
-  mousedown?: FlexChartEventsFuncType;
-  mousemove?: FlexChartEventsFuncType;
-  mouseup?: FlexChartEventsFuncType;
-  mouseover?: FlexChartEventsFuncType;
-  mouseout?: FlexChartEventsFuncType;
-  globalout?: FlexChartEventsFuncType;
-  contextmenu?: FlexChartEventsFuncType;
+  click?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  dblclick?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  mousedown?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  mousemove?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  mouseup?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  mouseover?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  mouseout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  globalout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  contextmenu?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
 }
 
 export type FlexChartEventsFuncTypeHandle = (

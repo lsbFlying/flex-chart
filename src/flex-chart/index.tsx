@@ -5,7 +5,12 @@ import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
 import {
   EventParams,
-  FlexChartDataObject, FlexChartEventsFuncType, FlexChartProps, FlexChartState, ResizeObserverType,
+  FlexChartDataObject,
+  FlexChartEventsFuncType,
+  FlexChartEventsFuncTypeHandle,
+  FlexChartProps,
+  FlexChartState,
+  ResizeObserverType,
 } from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
@@ -136,7 +141,9 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
           });
         } else {
           this.chartsInstance?.on(eventName, (params: EventParams) => {
-            item.handle(params, this.chartsInstance as EChartsType);
+            !item.handle
+              ? (item as any as FlexChartEventsFuncTypeHandle)(params, this.chartsInstance as EChartsType)
+              : item.handle(params, this.chartsInstance as EChartsType);
           });
         }
       }
