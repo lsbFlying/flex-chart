@@ -86,13 +86,21 @@ export type FlexChartEventsFuncTypeHandle = (
 ) => void;
 
 export type EventParams = {
+  type: string;
+  encode: {
+    x: number[];
+    y: number[];
+  };
+  dimensionNames: ("x" | "y")[];
   // 当前点击的图形元素所属的组件名称，
   // 其值如 'series'、'markLine'、'markPoint'、'timeLine' 等。
   componentType: string;
+  componentSubType: string;
   // 系列类型。值可能为：'line'、'bar'、'pie' 等。当 componentType 为 'series' 时有意义。
   seriesType: string;
   // 系列在传入的 option.series 中的 index。当 componentType 为 'series' 时有意义。
   seriesIndex: number;
+  seriesId: string;
   // 系列名称。当 componentType 为 'series' 时有意义。
   seriesName: string;
   // 数据名，类目名
@@ -104,14 +112,35 @@ export type EventParams = {
   // sankey、graph 等图表同时含有 nodeData 和 edgeData 两种 data，
   // dataType 的值会是 'node' 或者 'edge'，表示当前点击在 node 还是 edge 上。
   // 其他大部分图表中只有一种 data，dataType 无意义。
-  dataType: string;
+  dataType?: string;
   // 传入的数据值
   value: number | string | (number | string)[];
   // 数据图形的颜色。当 componentType 为 'series' 时有意义。
   color: string;
+  borderColor?: string;
   // 用户自定义的数据。只在 graphic component 和自定义系列（custom series）
   // 中生效，如果节点定义上设置了如：{type: 'circle', info: {some: 123}}。
-  info: any;
+  info?: any;
+  event: HandleEvent;
+};
+
+/** todo 部分属性不确定用any */
+export type HandleEvent = {
+  cancelBubble: boolean;
+  event: PointerEvent;
+  gestureEvent?: any;
+  offsetX: number;
+  offsetY: number;
+  pinchScale?: any;
+  pinchX?: any;
+  pinchY?: any;
+  stop: Function;
+  target: any;
+  topTarget: any;
+  type: "click";
+  wheelDelta: number;
+  which: number;
+  zrByTouch?: any;
 };
 
 /** flex-chart图表的风格方向 */
