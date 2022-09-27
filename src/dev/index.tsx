@@ -8,15 +8,24 @@ import { testCategoryData, testData1, testData2 } from "./testData";
  */
 const Dev = () => {
   const [data, setData] = useState<any>(testData1);
+  const [initTheme, setInitTheme] = useState<string | undefined>(undefined);
   
   return (
     <div className="wrap">
       <div className="btnWrap">
-        <button onClick={() => setData(testData1)}>数据1</button>
-        <button onClick={() => setData(testData2)}>数据2</button>
+        <button onClick={() => {
+          setData(testData1);
+          // setInitTheme("light");
+          setInitTheme(undefined);
+        }}>数据1</button>
+        <button onClick={() => {
+          // setData(testData2);
+          setInitTheme("dark");
+        }}>数据2</button>
       </div>
       <div className="testFlexChart">
         <FlexChart
+          initTheme={initTheme}
           // vertical/horizontal/verticalInverse/horizontalInverse
           // theme="horizontalInverse"
           // autoFit

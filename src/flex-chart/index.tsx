@@ -78,10 +78,8 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     ) {
       this.chartsInstance?.dispose();
       await this.createNewChartInstance();
-      this.reRenderOption(prevProps);
-    } else {
-      this.reRenderOption(prevProps);
     }
+    this.reRenderOption(prevProps);
   }
   
   componentWillUnmount() {
