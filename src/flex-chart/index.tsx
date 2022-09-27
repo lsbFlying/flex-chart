@@ -62,7 +62,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   
   async componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
     await this.createNewChartInstance(prevProps);
-    this.rerenderOption(prevProps);
+    this.reRenderOption(prevProps);
   }
   
   componentWillUnmount() {
@@ -85,7 +85,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   /** 处理更新渲染 */
-  rerenderOption = (prevProps: Readonly<FlexChartProps>) => {
+  reRenderOption = (prevProps: Readonly<FlexChartProps>) => {
     const {
       autoFit, mergeOption, direction, options, data, categoryData, autoResize, lineSeries, barSeries,
     } = this.props;
