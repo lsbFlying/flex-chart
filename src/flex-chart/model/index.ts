@@ -16,9 +16,7 @@ export interface FlexChartProps extends FlexChartICSS {
    * 再从categoryData中获取类目数据，或者data中获取的类目数据每一个系列
    */
   categoryData?: (string | number)[];
-  /**
-   * 系列数据类型，默认是bar柱类型系列
-   */
+  /** 系列数据类型，默认是bar柱类型系列 */
   seriesTypes?: SeriesTypes | SeriesTypes[];
   /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
   lineSeries?: EChartOption.SeriesLine;
