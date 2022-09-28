@@ -37,7 +37,7 @@ export interface FlexChartProps extends FlexChartICSS {
   /** 初始化的样式主题 */
   initTheme?: string | object;
   /** 图表加载，加载参数是图表实例，并且会随着实例的销毁重建而更新 */
-  chartLoad?(chartsInstance: EChartsType): void;
+  onChartLoad?(chartsInstance: EChartsType): void;
   /** 事件绑定 */
   onEvents?: FlexChartEventsType;
   /**

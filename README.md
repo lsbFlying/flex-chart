@@ -87,6 +87,8 @@ function App() {
 }
 ```
 
+#### autoResize
+
 ### License
 [MIT License](https://github.com/lsbFlying/flex-chart/blob/master/LICENSE) (c) [刘善保](https://github.com/lsbFlying)
 

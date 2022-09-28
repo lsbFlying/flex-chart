@@ -40,10 +40,9 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   private chartResizeObserver: ResizeObserverType | null = null;
   
   async componentDidMount() {
-    const { autoResize, chartLoad } = this.props;
+    const { autoResize } = this.props;
     const { containerRef } = this.state;
     await this.createNewChartInstance();
-    chartLoad?.(this.chartsInstance as EChartsType);
     if (autoResize) {
       this.chartResizeObserver = new ResizeObserver(() => {
         (this.chartsInstance as EChartsType).resize();
@@ -119,7 +118,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   
   /** 创建新的图表实例 */
   createNewChartInstance = async () => {
-    const { initTheme, initOpts, onEvents } = this.props;
+    const { initTheme, initOpts, onEvents, onChartLoad } = this.props;
     const { containerRef } = this.state;
     this.chartsInstance = echarts.init(
       containerRef.current as HTMLDivElement | HTMLCanvasElement,
@@ -127,6 +126,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
       initOpts as any,
     );
+    onChartLoad?.(this.chartsInstance as EChartsType);
     for (const eventName in onEvents) {
       if (Object.prototype.hasOwnProperty.call(onEvents, eventName)) {
         // @ts-ignore
