@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./index.css";
 import { FlexChart } from "../flex-chart";
-import { testCategoryData, testData1, testData2 } from "./testData";
+import { testCategoryData, rainFallTestData4, testData1, testData2 } from "./testData";
 
 /**
  * Dev
@@ -15,12 +15,13 @@ const Dev = () => {
       <div className="btnWrap">
         <button onClick={() => {
           setData(testData1);
-          setInitTheme("light");
+          // setInitTheme("light");
           // setInitTheme(undefined);
         }}>数据1</button>
         <button onClick={() => {
           // setData(testData2);
-          setInitTheme("dark");
+          setData(rainFallTestData4);
+          // setInitTheme("dark");
         }}>数据2</button>
       </div>
       <div className="testFlexChart">
@@ -46,11 +47,11 @@ const Dev = () => {
           mergeOption={false}
           data={data}
           // seriesTypes="line"
-          seriesTypes={["bar", "line", "line"]}
+          // seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
           // legendPlacement="left"
           // lineSeries={{symbol: "triangle"}}
-          barSeries={{barWidth: 12}}
+          // barSeries={{barWidth: 12}}
           options={{
             // grid: {
             //   top: 50,
