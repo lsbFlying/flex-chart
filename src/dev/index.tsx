@@ -15,8 +15,8 @@ const Dev = () => {
       <div className="btnWrap">
         <button onClick={() => {
           setData(testData1);
-          // setInitTheme("light");
-          setInitTheme(undefined);
+          setInitTheme("light");
+          // setInitTheme(undefined);
         }}>数据1</button>
         <button onClick={() => {
           // setData(testData2);
