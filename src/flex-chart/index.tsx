@@ -161,7 +161,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     
     // data数据是否是单个维度的纯数据
-    const pureData = (data[0]?.data?.[0] as FlexChartDataObject).name === undefined;
+    const pureData = Object.prototype.hasOwnProperty.call((data[0]?.data?.[0] as FlexChartDataObject), "name");
     
     /**
      * 如果外界没有给出类目数据，则会默认遍历map处理找出类目轴数据，
