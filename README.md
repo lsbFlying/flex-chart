@@ -92,100 +92,18 @@ function App() {
 |--------------|------------------------------------------------------------------|--------------------------|------------|
 | autoFit      | adjust proportionally according to the page width                | boolean                  | false      |
 | autoResize   | decide whether to trigger when parent component container resize | boolean                  | -          |
-| barSeries    | set bar series data option                                       | EChartOption.SeriesBar   | -          |
+| barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/flex-chart/model)   | -          |
 | categoryData | category axis data                                               | (string &#124; number)[] | -          |
-| data         | data source                                                      | any[]                    | []         |
+| data         | data source                            | [FlexChartData[]](./src/flex-chart/model)          | []         |
 | direction    | chart direction | "vertical"<br/>"horizontal"<br/>"verticalInverse"<br/>"horizontalInverse" | "vertical" |
-| initOpts     | echarts initialization parameter configuration                   | echartsInitOpts          | -          |
+| initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/flex-chart/model)  | -          |
 | initTheme    | echarts Initialization Style Theme Configuration                 | string &#124; object     | -          |
-| lineSeries   | set line series data option                                      | EChartOption.SeriesLine  | -          |
+| lineSeries   | set line series data option             | [EChartOption.SeriesLine](./src/flex-chart/model) | -          |
 | mergeOption  | whether to merge the echarts configuration                       | boolean                  | true       |
-| onChartLoad  | chart load event                               | (chartsInstance: echarts.ECharts) => void  | -          |
-| onEvents     | echarts mouse event monitoring                                   | FlexChartEventsType      | -          |
-| options      | configuration parameters of echarts                              | EChartOption             | -          |
-| seriesTypes  | series data type                     | ("bar" &#124; "line") <br/> &#124; ("bar" &#124; "line")[] | -          |
-
-#### notes
-```tsx
-interface FlexChartEventsType {
-  click?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  dblclick?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mousedown?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mousemove?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseup?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseover?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  globalout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  contextmenu?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-}
-
-type FlexChartEventsFuncType = {
-  // query is completely consistent with the query parameter of echarts
-  query?: string | Object;
-  handle: FlexChartEventsFuncTypeHandle;
-};
-
-type FlexChartEventsFuncTypeHandle = (
-  params: EventParams,
-  chartsInstance: echarts.ECharts,
-) => void;
-
-type EventParams = {
-  type: string;
-  encode: {
-    x: number[];
-    y: number[];
-  };
-  dimensionNames: ("x" | "y")[];
-  // eg: 'series'、'markLine'、'markPoint'、'timeLine' egg.
-  componentType: string;
-  componentSubType: string;
-  // eg：'line'、'bar'、'pie' egg. work when componentType === 'series'
-  seriesType: string;
-  // option.series`s index, work when componentType === 'series'
-  seriesIndex: number;
-  seriesId: string;
-  // series name, work when componentType === 'series'
-  seriesName: string;
-  // data name, category name
-  name: string | number;
-  // data in array`s index
-  dataIndex: number;
-  // native data source items
-  data: Object;
-  // sankey, graph and other charts contain both nodeData and edgeData,
-  // The value of dataType will be 'node' or 'edge', indicating whether the current click is on node or edge.
-  // There is only one data in most other charts, and dataType is meaningless.
-  dataType?: string;
-  // data value
-  value: number | string | (number | string)[];
-  // data chart color, work when componentType === 'series'
-  color: string;
-  borderColor?: string;
-  // user defined data. Only in graphic component and custom serie
-  // if the node definition is set, such as {type: 'circle', info: {some: 123}}.
-  info?: any;
-  event: HandleEvent;
-};
-
-type HandleEvent = {
-  cancelBubble: boolean;
-  event: PointerEvent;
-  gestureEvent?: any;
-  offsetX: number;
-  offsetY: number;
-  pinchScale?: any;
-  pinchX?: any;
-  pinchY?: any;
-  stop: Function;
-  target: any;
-  topTarget: any;
-  type: "click";
-  wheelDelta: number;
-  which: number;
-  zrByTouch?: any;
-};
-```
+| onChartLoad  | chart load event         | (chartsInstance: [EChartsType](./src/flex-chart/model)) => void  | -          |
+| onEvents     | echarts mouse event monitoring         | [FlexChartEventsType](./src/flex-chart/model)      | -          |
+| options      | configuration parameters of echarts                | [EChartOption](./src/flex-chart/model) | -          |
+| seriesTypes  | series data type               | ("bar" &#124; "line") <br/> &#124; ("bar" &#124; "line")[] | -          |
 
 ### License
 [MIT License](https://github.com/lsbFlying/flex-chart/blob/master/LICENSE) (c) [刘善保](https://github.com/lsbFlying)

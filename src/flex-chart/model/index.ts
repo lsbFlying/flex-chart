@@ -33,7 +33,7 @@ export interface FlexChartProps extends FlexChartICSS {
   /** echarts的配置参数(echarts官方文档上的配置项) */
   options?: EChartOption;
   /** echarts初始化参数配置 */
-  initOpts?: echartsInitOpts;
+  initOpts?: EchartsInitOpts;
   /** 初始化的样式主题 */
   initTheme?: string | object;
   /** 图表加载，加载参数是图表实例，并且会随着实例的销毁重建而更新 */
@@ -178,7 +178,7 @@ export interface FlexChartData {
   data: FlexChartDataObject[] | FlexChartDataValue[];
 }
 
-export interface echartsInitOpts {
+export interface EchartsInitOpts {
   devicePixelRatio?: number;
   renderer?: "canvas" | "svg";
   width?: number | string | null;
