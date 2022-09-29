@@ -98,18 +98,17 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   /** 处理更新渲染 */
   reRenderOption = (prevProps: Readonly<FlexChartProps>) => {
     const {
-      autoFit, mergeOption, direction, options, data, categoryData, autoResize, lineSeries, barSeries,
+      autoFit, mergeOption, direction, options, data, autoResize, lineSeries, barSeries,
     } = this.props;
     const {
       autoFit: prevAutoFit, mergeOption: prevMergeOption, direction: prevDirection, options: prevOptions,
-      data: prevData, categoryData: prevCategoryData, autoResize: prevAutoResize,
+      data: prevData, autoResize: prevAutoResize,
       lineSeries: prevLineSeries, barSeries: prevBarSeries
     } = prevProps;
     if (
-      data !== prevData || categoryData !== prevCategoryData
-      || lineSeries !== prevLineSeries || barSeries !== prevBarSeries || options !== prevOptions
-      || direction !== prevDirection || autoFit !== prevAutoFit || mergeOption !== prevMergeOption
-      || autoResize !== prevAutoResize
+      data !== prevData || lineSeries !== prevLineSeries || barSeries !== prevBarSeries
+      || options !== prevOptions || direction !== prevDirection || autoFit !== prevAutoFit
+      || mergeOption !== prevMergeOption || autoResize !== prevAutoResize
     ) {
       fit.autoFit = autoFit;
       this.handleChartOption();
@@ -157,18 +156,14 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = () => {
-    const { direction, data, options, categoryData, seriesTypes, lineSeries, barSeries } = this.props;
+    const { direction, data, options, seriesTypes, lineSeries, barSeries } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
-    
-    // data数据是否是单个维度的纯数据
-    const pureData = !Object.prototype.hasOwnProperty.call((data[0]?.data?.[0] as FlexChartDataObject), "name");
     
     /**
      * 如果外界没有给出类目数据，则会默认遍历map处理找出类目轴数据，
      * 此时如果遇到大数据则会耗时，不建议，所以尽量在遇到大数据的情况下给出类目数据
      */
-    const categoryDataArray = categoryData
-      || (pureData ? [] : (data[0]?.data as FlexChartDataObject[]).map(item => item.name));
+    const categoryDataArray = (data[0]?.data as FlexChartDataObject[]).map(item => item.name);
     
     const isVertical = direction.includes("vertical");
     
@@ -179,9 +174,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       const res = `${item.name}`;
       seriesNames.push(res);
       maxLongSeriesNameCount = Math.max(exactCalcStrFontCount(res), maxLongSeriesNameCount);
-      const curDataMax = pureData
-        ? Math.max(...(item.data as number[]))
-        : Math.max(...((item.data as FlexChartDataObject[]).map(item1 => item1.value) as number[]));
+      const curDataMax = Math.max(...((item.data as FlexChartDataObject[]).map(item1 => item1.value) as number[]));
       maxValue = Math.max((curDataMax as number) || 0, maxValue);
       
       const type = seriesTypes

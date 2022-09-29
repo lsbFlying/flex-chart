@@ -9,13 +9,7 @@ export interface FlexChartProps extends FlexChartICSS {
    *
    * @default []
    */
-  data: FlexChartData[];
-  /**
-   * @description 类目轴数据
-   * 在data数据是单维度纯数据的时候，组件从data数据中获取不到类目数据的情况下
-   * 再从categoryData中获取类目数据，或者data中获取的类目数据每一个系列
-   */
-  categoryData?: (string | number)[];
+  data: FlexChartDataItem[];
   /** 系列数据类型，默认是bar柱类型系列 */
   seriesTypes?: SeriesTypes | SeriesTypes[];
   /** 如果单纯是要设置line系列的数据，不想通过series的数组设置的话则可以统一设置 */
@@ -171,11 +165,11 @@ export interface FlexChartDataObject {
  * @description 想着数据格式不参染样式设置，所以这里没有设置为echarts的series的数据类型包含symbol，label等各种设置
  * 做了一个单纯的数据抽象，抽离出需要的纯数据或者纯对象数据
  */
-export interface FlexChartData {
+export interface FlexChartDataItem {
   /** 系列名 */
   name: string | number;
   /** 该系列数据 */
-  data: FlexChartDataObject[] | FlexChartDataValue[];
+  data: FlexChartDataObject[];
 }
 
 export interface EchartsInitOpts {

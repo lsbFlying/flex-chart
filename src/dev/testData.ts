@@ -1,3 +1,4 @@
+// 42
 export const rainFallTestData1 = [
   {
     // eighteenRainfall: 9996,
@@ -31,6 +32,7 @@ export const rainFallTestData1 = [
   },
 ];
 
+// 84
 export const rainFallTestData2 = [
   {
     name: 1,
@@ -90,6 +92,7 @@ export const rainFallTestData2 = [
   },
 ];
 
+// 105
 export const rainFallTestData3 = [
   /** 2018月累计降水量 */
   {name: 1, seriesName: "2018月累计降水量", value: 7586},
@@ -131,6 +134,70 @@ export const rainFallTestData3 = [
   {name: 5, seriesName: "测试月累计降水量", value: 8454},
   {name: 6, seriesName: "测试月累计降水量", value: 7648},
   {name: 7, seriesName: "测试月累计降水量", value: 6448},
+];
+
+// 80
+export const rainFallTestData4 = [
+  {
+    name: "2018月累计降水量",
+    data: [
+      {name: 1, value: 7586},
+      {name: 2, value: 8765},
+      {name: 3, value: 7654},
+      {name: 4, value: 6543},
+      {name: 5, value: 5432},
+      {name: 6, value: 5348},
+      {name: 7, value: 2348},
+    ],
+  },
+  {
+    name: "2019月累计降水量",
+    data: [
+      {name: 1, value: 2348},
+      {name: 2, value: 7343},
+      {name: 3, value: 4372},
+      {name: 4, value: 4726},
+      {name: 5, value: 6632},
+      {name: 6, value: 8925},
+      {name: 7, value: 7925},
+    ],
+  },
+  {
+    name: "历史月累计降水量",
+    data: [
+      {name: 1, value: 5437},
+      {name: 2, value: 5235},
+      {name: 3, value: 3893},
+      {name: 4, value: 3727},
+      {name: 5, value: 2891},
+      {name: 6, value: 8476},
+      {name: 7, value: 8976},
+    ],
+  },
+  {
+    name: "未来月累计降水量",
+    data: [
+      {name: 1, value: 4346},
+      {name: 2, value: 3612},
+      {name: 3, value: 1784},
+      {name: 4, value: 6538},
+      {name: 5, value: 5233},
+      {name: 6, value: 3437},
+      {name: 7, value: 2417},
+    ],
+  },
+  {
+    name: "测试月累计降水量",
+    data: [
+      {name: 1, value: 8234},
+      {name: 2, value: 7895},
+      {name: 3, value: 9035},
+      {name: 4, value: 6239},
+      {name: 5, value: 8454},
+      {name: 6, value: 7648},
+      {name: 7, value: 6448},
+    ],
+  },
 ];
 
 export const testData1 = [

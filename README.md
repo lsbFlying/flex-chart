@@ -1,7 +1,7 @@
 <div align="center">
 <h1>FlexChart</h1>
 
-**Re**act **E**charts
+**fl**ex **ch**art
 
 <h3>Chart with automatic boundary layout size processing (encapsulated echarts)</h3>
 
@@ -25,7 +25,7 @@ npm i flex-chart
 npm install --save echarts
 ```
 
-### features
+### Features
 - Automatic processing of boundary size layout
 - Automatic adjustment of component container layout size change
 
@@ -33,14 +33,6 @@ npm install --save echarts
 ```tsx
 import { FlexChart } from "flex-chart";
 
-/**
- * @description data can be directly the value of a single dimension
- * @example
- * const testData = [
- *   {name: "salesVolume", data: [1, 2, 3]},
- *   {name: "stock", data: [4, 5, 6]},
- * ];
- */
 const testData = [
   {
     name: "ClothingClothingSalesVolume",
@@ -93,8 +85,7 @@ function App() {
 | autoFit      | adjust proportionally according to the page width                | boolean                  | false      |
 | autoResize   | decide whether to trigger when parent component container resize | boolean                  | -          |
 | barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/flex-chart/model)   | -          |
-| categoryData | category axis data                                               | (string &#124; number)[] | -          |
-| data         | data source                            | [FlexChartData[]](./src/flex-chart/model)          | []         |
+| data         | data source                            | [FlexChartDataItem[]](./src/flex-chart/model)      | []         |
 | direction    | chart direction | "vertical"<br/>"horizontal"<br/>"verticalInverse"<br/>"horizontalInverse" | "vertical" |
 | initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/flex-chart/model)  | -          |
 | initTheme    | echarts Initialization Style Theme Configuration                 | string &#124; object     | -          |
