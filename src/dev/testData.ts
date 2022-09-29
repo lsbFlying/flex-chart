@@ -1,3 +1,138 @@
+export const rainFallTestData1 = [
+  {
+    // eighteenRainfall: 9996,
+    name: 1, eighteenRainfall: 7586, nineteenRainfall: 2348,
+    historyRainfall: 5437, futureRainfall: 4346, testRainfall: 8234,
+  },
+  {
+    name: 2, eighteenRainfall: 8765, nineteenRainfall: 7343,
+    historyRainfall: 5235, futureRainfall: 3612, testRainfall: 7895,
+  },
+  {
+    name: 3, eighteenRainfall: 7654, nineteenRainfall: 4372,
+    historyRainfall: 3893, futureRainfall: 1784, testRainfall: 9035,
+  },
+  {
+    name: 4, eighteenRainfall: 6543, nineteenRainfall: 4726,
+    historyRainfall: 3727, futureRainfall: 6538, testRainfall: 6239,
+  },
+  {
+    name: 5, eighteenRainfall: 5432, nineteenRainfall: 6632,
+    historyRainfall: 2891, futureRainfall: 5233, testRainfall: 8454,
+  },
+  {
+    name: 6, eighteenRainfall: 5348, nineteenRainfall: 8925,
+    historyRainfall: 8476, futureRainfall: 3437, testRainfall: 7648,
+  },
+  {
+    name: 7, eighteenRainfall: 2348, nineteenRainfall: 7925,
+    historyRainfall: 8976, futureRainfall: 2417, testRainfall: 6448,
+    // nineteenRainfall: null as any, historyRainfall: null as any, futureRainfall: null as any, testRainfall: null as any,
+  },
+];
+
+export const rainFallTestData2 = [
+  {
+    name: 1,
+    data: [
+      {seriesName: "2018月累计降水量", value: 7586},
+      {seriesName: "2019月累计降水量", value: 2348}, {seriesName: "历史月累计降水量", value: 5437},
+      {seriesName: "未来月累计降水量", value: 4346}, {seriesName: "测试月累计降水量", value: 8234},
+    ],
+  },
+  {
+    name: 2,
+    data: [
+      {seriesName: "2018月累计降水量", value: 8765},
+      {seriesName: "2019月累计降水量", value: 7343}, {seriesName: "历史月累计降水量", value: 5235},
+      {seriesName: "未来月累计降水量", value: 3612}, {seriesName: "测试月累计降水量", value: 7895},
+    ],
+  },
+  {
+    name: 3,
+    data: [
+      {seriesName: "2018月累计降水量", value: 7654},
+      {seriesName: "2019月累计降水量", value: 4372}, {seriesName: "历史月累计降水量", value: 3893},
+      {seriesName: "未来月累计降水量", value: 1784}, {seriesName: "测试月累计降水量", value: 9035},
+    ],
+  },
+  {
+    name: 4,
+    data: [
+      {seriesName: "2018月累计降水量", value: 6543},
+      {seriesName: "2019月累计降水量", value: 4726}, {seriesName: "历史月累计降水量", value: 3727},
+      {seriesName: "未来月累计降水量", value: 6538}, {seriesName: "测试月累计降水量", value: 6239},
+    ],
+  },
+  {
+    name: 5,
+    data: [
+      {seriesName: "2018月累计降水量", value: 5432},
+      {seriesName: "2019月累计降水量", value: 6632}, {seriesName: "历史月累计降水量", value: 2891},
+      {seriesName: "未来月累计降水量", value: 5233}, {seriesName: "测试月累计降水量", value: 8454},
+    ],
+  },
+  {
+    name: 6,
+    data: [
+      {seriesName: "2018月累计降水量", value: 5348},
+      {seriesName: "2019月累计降水量", value: 8925}, {seriesName: "历史月累计降水量", value: 8476},
+      {seriesName: "未来月累计降水量", value: 3437}, {seriesName: "测试月累计降水量", value: 7648},
+    ],
+  },
+  {
+    name: 7,
+    data: [
+      {seriesName: "2018月累计降水量", value: 2348},
+      {seriesName: "2019月累计降水量", value: 7925}, {seriesName: "历史月累计降水量", value: 8976},
+      {seriesName: "未来月累计降水量", value: 2417}, {seriesName: "测试月累计降水量", value: 6448},
+    ],
+  },
+];
+
+export const rainFallTestData3 = [
+  /** 2018月累计降水量 */
+  {name: 1, seriesName: "2018月累计降水量", value: 7586},
+  {name: 2, seriesName: "2018月累计降水量", value: 8765},
+  {name: 3, seriesName: "2018月累计降水量", value: 7654},
+  {name: 4, seriesName: "2018月累计降水量", value: 6543},
+  {name: 5, seriesName: "2018月累计降水量", value: 5432},
+  {name: 6, seriesName: "2018月累计降水量", value: 5348},
+  {name: 7, seriesName: "2018月累计降水量", value: 2348},
+  /** 2019月累计降水量 */
+  {name: 1, seriesName: "2019月累计降水量", value: 2348},
+  {name: 2, seriesName: "2019月累计降水量", value: 7343},
+  {name: 3, seriesName: "2019月累计降水量", value: 4372},
+  {name: 4, seriesName: "2019月累计降水量", value: 4726},
+  {name: 5, seriesName: "2019月累计降水量", value: 6632},
+  {name: 6, seriesName: "2019月累计降水量", value: 8925},
+  {name: 7, seriesName: "2019月累计降水量", value: 7925},
+  /** 历史月累计降水量 */
+  {name: 1, seriesName: "历史月累计降水量", value: 5437},
+  {name: 2, seriesName: "历史月累计降水量", value: 5235},
+  {name: 3, seriesName: "历史月累计降水量", value: 3893},
+  {name: 4, seriesName: "历史月累计降水量", value: 3727},
+  {name: 5, seriesName: "历史月累计降水量", value: 2891},
+  {name: 6, seriesName: "历史月累计降水量", value: 8476},
+  {name: 7, seriesName: "历史月累计降水量", value: 8976},
+  /** 未来月累计降水量 */
+  {name: 1, seriesName: "未来月累计降水量", value: 4346},
+  {name: 2, seriesName: "未来月累计降水量", value: 3612},
+  {name: 3, seriesName: "未来月累计降水量", value: 1784},
+  {name: 4, seriesName: "未来月累计降水量", value: 6538},
+  {name: 5, seriesName: "未来月累计降水量", value: 5233},
+  {name: 6, seriesName: "未来月累计降水量", value: 3437},
+  {name: 7, seriesName: "未来月累计降水量", value: 2417},
+  /** 测试月累计降水量 */
+  {name: 1, seriesName: "测试月累计降水量", value: 8234},
+  {name: 2, seriesName: "测试月累计降水量", value: 7895},
+  {name: 3, seriesName: "测试月累计降水量", value: 9035},
+  {name: 4, seriesName: "测试月累计降水量", value: 6239},
+  {name: 5, seriesName: "测试月累计降水量", value: 8454},
+  {name: 6, seriesName: "测试月累计降水量", value: 7648},
+  {name: 7, seriesName: "测试月累计降水量", value: 6448},
+];
+
 export const testData1 = [
   {
     name: "衣物衣物衣物衣物衣物销量",

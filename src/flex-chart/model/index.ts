@@ -18,9 +18,9 @@ export interface FlexChartProps extends FlexChartICSS {
   categoryData?: (string | number)[];
   /** 系列数据类型，默认是bar柱类型系列 */
   seriesTypes?: SeriesTypes | SeriesTypes[];
-  /** 如果单纯是line系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  /** 如果单纯是要设置line系列的数据，不想通过series的数组设置的话则可以统一设置 */
   lineSeries?: EChartOption.SeriesLine;
-  /** 如果单纯是bar系列的数据，则不想通过series的数组设置的话可以统一设置 */
+  /** 如果单纯是要设置bar系列的数据，不想通过series的数组设置的话则可以统一设置 */
   barSeries?: EChartOption.SeriesBar;
   /**
    * @description 是否开启容器尺寸变化监听，页面resize的话容器自然也会可能触发容器的resize
@@ -189,7 +189,6 @@ export interface echartsInitOpts {
 }
 
 export type SeriesTypes = "bar" | "line";
-
 
 export type FlexChartEventsFuncType = {
   /**

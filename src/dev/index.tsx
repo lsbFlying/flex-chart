@@ -46,11 +46,11 @@ const Dev = () => {
           mergeOption={false}
           data={data}
           // seriesTypes="line"
-          // seriesTypes={["bar", "line", "line"]}
+          seriesTypes={["bar", "line", "line"]}
           // categoryData={testCategoryData}
           // legendPlacement="left"
           // lineSeries={{symbol: "triangle"}}
-          // barSeries={{barWidth: 12}}
+          barSeries={{barWidth: 12}}
           options={{
             // grid: {
             //   top: 50,

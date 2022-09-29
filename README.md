@@ -87,7 +87,23 @@ function App() {
 }
 ```
 
-#### autoResize
+### Documentation
+| Property     | Description                                                      | Type                     | Default    |
+|--------------|------------------------------------------------------------------|--------------------------|------------|
+| autoFit      | adjust proportionally according to the page width                | boolean                  | false      |
+| autoResize   | decide whether to trigger when parent component container resize | boolean                  | -          |
+| barSeries    | set bar series data option                                       | EChartOption.SeriesBar   | -          |
+| categoryData | category axis data                                               | (string &#124; number)[] | -          |
+| data         | data source                                                      | any[]                    | []         |
+| direction    | chart direction | "vertical"<br/>"horizontal"<br/>"verticalInverse"<br/>"horizontalInverse" | "vertical" |
+| initOpts     | echarts initialization parameter configuration                   | echartsInitOpts          | -          |
+| initTheme    | echarts Initialization Style Theme Configuration                 | string &#124; object     | -          |
+| lineSeries   | set line series data option                                      | EChartOption.SeriesLine  | -          |
+| mergeOption  | whether to merge the echarts configuration                       | boolean                  | true       |
+| onChartLoad  | chart load event                               | (chartsInstance: echarts.ECharts) => void  | -          |
+| onEvents     | echarts' mouse event monitoring                                  | FlexChartEventsType      | -          |
+| options      | configuration parameters of echarts                              | EChartOption             | -          |
+| seriesTypes  | series data type                     | ("bar" &#124; "line") <br/> &#124; ("bar" &#124; "line")[] | -          |
 
 ### License
 [MIT License](https://github.com/lsbFlying/flex-chart/blob/master/LICENSE) (c) [刘善保](https://github.com/lsbFlying)
