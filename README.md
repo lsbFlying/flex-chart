@@ -82,16 +82,16 @@ function App() {
 |--------------|------------------------------------------------------------------|--------------------------|------------|
 | autoFit      | adjust proportionally according to the page width                | boolean                  | false      |
 | autoResize   | decide whether to trigger when parent component container resize | boolean                  | -          |
-| barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/flex-chart/model)   | -          |
-| data         | data source                            | [FlexChartDataItem[]](./src/flex-chart/model)      | []         |
+| barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/flex-chart/model/index.ts)   | -          |
+| data         | data source                            | [FlexChartDataItem[]](./src/flex-chart/model/index.ts)      | []         |
 | direction    | chart direction | "vertical"<br/>"horizontal"<br/>"verticalInverse"<br/>"horizontalInverse" | "vertical" |
-| initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/flex-chart/model)  | -          |
+| initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/flex-chart/model/index.ts)  | -          |
 | initTheme    | echarts Initialization Style Theme Configuration                 | string &#124; object     | -          |
-| lineSeries   | set line series data option             | [EChartOption.SeriesLine](./src/flex-chart/model) | -          |
+| lineSeries   | set line series data option             | [EChartOption.SeriesLine](./src/flex-chart/model/index.ts) | -          |
 | mergeOption  | whether to merge the echarts configuration                       | boolean                  | true       |
-| onChartLoad  | chart load event         | (chartsInstance: [EChartsType](./src/flex-chart/model)) => void  | -          |
-| onEvents     | echarts mouse event monitoring         | [FlexChartEventsType](./src/flex-chart/model)      | -          |
-| options      | configuration parameters of echarts                | [EChartOption](./src/flex-chart/model) | -          |
+| onChartLoad  | chart load event         | (chartsInstance: [EChartsType](./src/flex-chart/model/index.ts)) => void  | -          |
+| onEvents     | echarts mouse event monitoring         | [FlexChartEventsType](./src/flex-chart/model/index.ts)      | -          |
+| options      | configuration parameters of echarts                | [EChartOption](./src/flex-chart/model/index.ts) | -          |
 | seriesTypes  | series data type               | ("bar" &#124; "line") <br/> &#124; ("bar" &#124; "line")[] | -          |
 
 ### License
