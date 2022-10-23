@@ -37,9 +37,9 @@ const testData = [
   {
     name: "ClothingClothingSalesVolume",
     data: [
-      {name: "衬衫", value: 50}, {name: "羊毛衫", value: 200},
-      {name: "雪纺衫", value: 360}, {name: "裤子", value: 100},
-      {name: "高跟鞋", value: 100}, {name: "袜子", value: 560},
+      {name: "shirt", value: 50}, {name: "cardigan", value: 200},
+      {name: "chiffon-shirt", value: 360}, {name: "trousers", value: 100},
+      {name: "high-heeled-shoes", value: 100}, {name: "socks", value: 560},
     ],
   },
   {
