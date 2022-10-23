@@ -155,7 +155,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
    * 默认配置项
    * 主要针对grid以及各种边界的距离处理
    */
-  genDefaultOption = () => {
+  genDefaultOption = (): any => {
     const { direction, data, options, seriesTypes, lineSeries, barSeries } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     
