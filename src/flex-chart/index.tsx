@@ -4,15 +4,8 @@ import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
 import {
-  EventParams,
-  FlexChartDataItem,
-  FlexChartDataItemBasic,
-  FlexChartDataObject,
-  FlexChartEventsFuncType,
-  FlexChartEventsFuncTypeHandle,
-  FlexChartProps,
-  FlexChartState,
-  ResizeObserverType,
+  EventParams, FlexChartDataItem, FlexChartDataItemBasic, FlexChartDataObject, FlexChartEventsFuncType,
+  FlexChartEventsFuncTypeHandle, FlexChartProps, FlexChartState, ResizeObserverType,
 } from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
