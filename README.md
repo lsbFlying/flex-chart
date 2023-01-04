@@ -6,7 +6,7 @@
 <h3>Chart with automatic boundary layout size processing (encapsulated echarts)</h3>
 
 [![GitHub license](https://img.shields.io/github/license/lsbFlying/flex-chart?style=flat-square)](https://github.com/lsbFlying/flex-chart/blob/master/LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/lsbFlying/flex-chart/CI?color=blue&style=flat-square)](https://github.com/lsbFlying/flex-chart/actions/workflows/test.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/lsbFlying/flex-chart/test.yml?color=blue&style=flat-square)](https://github.com/lsbFlying/flex-chart/actions/workflows/test.yml)
 [![npm type definitions](https://img.shields.io/npm/types/typescript?color=orange&style=flat-square)](https://github.com/lsbFlying/flex-chart/blob/master/src/flex-chart/index.tsx)
 [![npm](https://img.shields.io/npm/v/flex-chart?color=blue&style=flat-square)](https://www.npmjs.com/package/flex-chart)
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/flex-chart?color=brightgreen&style=flat-square)](https://bundlephobia.com/package/flex-chart)
