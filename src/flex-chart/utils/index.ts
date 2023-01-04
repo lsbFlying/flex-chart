@@ -5,7 +5,7 @@ import { fontSizeMap } from "../static";
  * @param px：当前像素尺寸值或者尺寸数组
  * @param defaultPx：默认设备的分辨率尺寸宽度（以宽度为基准）
  */
-export const fit = <P extends unknown>(px: P, defaultPx: number = 1920): P => {
+export const fit = <P>(px: P, defaultPx = 1920): P => {
   if (!fit.autoFit) return px;
   // 默认UI设备宽度分辨率按照1920处理（真正开发时按需求设备尺寸更改）
   const clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

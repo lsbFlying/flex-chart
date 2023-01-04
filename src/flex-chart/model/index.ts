@@ -3,13 +3,15 @@ import { FlexChartICSS } from "./icss";
 import { EChartOption } from "echarts"; // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
 import { EChartsType } from "../index";
 
-export interface FlexChartProps extends FlexChartICSS {
+export interface FlexChartProps<DataItem extends FlexChartDataItem> extends FlexChartICSS {
   /**
    * @description 数据源
    *
    * @default []
    */
-  data: FlexChartDataItem[];
+  data: DataItem[];
+  /** 数据data的字段对应属性名 */
+  fieldNames?: FieldNames;
   /** 系列数据类型，默认是bar柱类型系列 */
   seriesTypes?: SeriesTypes | SeriesTypes[];
   /** 如果单纯是要设置line系列的数据，不想通过series的数组设置的话则可以统一设置 */
@@ -159,6 +161,13 @@ export interface FlexChartDataObject {
   name: string | number;
   /** 单个数据项的数值 */
   value: FlexChartDataValue;
+}
+
+export interface FieldNames {
+  name?: string;
+  data?: string;
+  dataName?: string;
+  dataValue?: string;
 }
 
 /**

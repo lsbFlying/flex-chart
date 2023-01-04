@@ -4,7 +4,7 @@ import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
 import {
-  EventParams, FlexChartDataObject, FlexChartEventsFuncType, FlexChartEventsFuncTypeHandle,
+  EventParams, FlexChartDataItem, FlexChartDataObject, FlexChartEventsFuncType, FlexChartEventsFuncTypeHandle,
   FlexChartProps, FlexChartState, ResizeObserverType,
 } from "./model";
 import {
@@ -21,7 +21,7 @@ export type EChartsType = echarts.ECharts;
  * @class FlexChart
  * @description 封装echarts的自动化布局处理的灵活图表，目前主要针对line与bar系列类型
  */
-export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartState> {
+export class FlexChart<P extends FlexChartDataItem> extends React.PureComponent<FlexChartProps<P>, FlexChartState> {
   
   static defaultProps = {
     data: [],
@@ -54,7 +54,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
     }
   }
   
-  async componentDidUpdate(prevProps: Readonly<FlexChartProps>) {
+  async componentDidUpdate(prevProps: Readonly<FlexChartProps<P>>) {
     const { initTheme, initOpts, onEvents } = this.props;
     const { initTheme: prevInitTheme, initOpts: prevInitOpts, onEvents: prevOnEvents } = prevProps || {};
     /**
@@ -73,7 +73,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       this.chartsInstance?.dispose();
       await this.createNewChartInstance();
     }
-    this.reRenderOption(prevProps);
+    this.renderOption(prevProps);
   }
   
   componentWillUnmount() {
@@ -96,7 +96,7 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
   }
   
   /** 处理更新渲染 */
-  reRenderOption = (prevProps: Readonly<FlexChartProps>) => {
+  renderOption = (prevProps: Readonly<FlexChartProps<P>>) => {
     const {
       autoFit, mergeOption, direction, options, data, autoResize, lineSeries, barSeries,
     } = this.props;
@@ -156,25 +156,32 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
    * 主要针对grid以及各种边界的距离处理
    */
   genDefaultOption = (): any => {
-    const { direction, data, options, seriesTypes, lineSeries, barSeries } = this.props;
+    const { direction, data, fieldNames, options, seriesTypes, lineSeries, barSeries } = this.props;
     const chartWidth = (this.chartsInstance as EChartsType).getWidth();
     
     /**
      * 如果外界没有给出类目数据，则会默认遍历map处理找出类目轴数据，
      * 此时如果遇到大数据则会耗时，不建议，所以尽量在遇到大数据的情况下给出类目数据
      */
-    const categoryDataArray = (data[0]?.data as FlexChartDataObject[]).map(item => item.name);
+    // @ts-ignore
+    const categoryDataArray = (data[0]?.[fieldNames?.data || "data"] as FlexChartDataObject[])
+      // @ts-ignore
+      .map(item => item?.[fieldNames?.dataName || "name"]);
     
     const isVertical = direction.includes("vertical");
     
     let maxLongSeriesNameCount = 0;
     let maxValue = 0;
     const seriesNames: string[] = [];
-    const seriesData = data.map((item, index) => {
-      const res = `${item.name}`;
+    const seriesData = data.map((item: FlexChartDataItem, index: number) => {
+      // @ts-ignore
+      const res = `${item?.[fieldNames?.name || "name"]}`;
       seriesNames.push(res);
       maxLongSeriesNameCount = Math.max(exactCalcStrFontCount(res), maxLongSeriesNameCount);
-      const curDataMax = Math.max(...((item.data as FlexChartDataObject[]).map(item1 => item1.value) as number[]));
+      // @ts-ignore
+      const curDataMax = Math.max(...((item?.[fieldNames?.data || "data"] as FlexChartDataObject[])
+      // @ts-ignore
+      .map(item1 => item1?.[fieldNames?.dataValue || "value"]) as number[]));
       maxValue = Math.max((curDataMax as number) || 0, maxValue);
       
       const type = seriesTypes
@@ -185,9 +192,11 @@ export class FlexChart extends React.PureComponent<FlexChartProps, FlexChartStat
       
       const otherOption = options?.series?.[index] || (type === "line" ? lineSeries : barSeries);
       
+      // @ts-ignore
+      const itemData = item?.[fieldNames?.data || "data"];
       return {
         ...item,
-        data: !isVertical ? item.data.reverse() : item.data,
+        data: !isVertical ? itemData.reverse() : itemData,
         type,
         ...otherOption,
       };
