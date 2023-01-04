@@ -3,7 +3,7 @@ import { FlexChartICSS } from "./icss";
 import { EChartOption } from "echarts"; // todo 暂时@types/echarts没有跟进到echarts最新5.x的版本，后续及时跟进更新类型
 import { EChartsType } from "../index";
 
-export interface FlexChartProps<DataItem extends FlexChartDataItem> extends FlexChartICSS {
+export interface FlexChartProps<DataItem extends FlexChartDataItemBasic = FlexChartDataItem> extends FlexChartICSS {
   /**
    * @description 数据源
    *
@@ -168,6 +168,10 @@ export interface FieldNames {
   data?: string;
   dataName?: string;
   dataValue?: string;
+}
+
+export interface FlexChartDataItemBasic {
+  [key: string]: any;
 }
 
 /**

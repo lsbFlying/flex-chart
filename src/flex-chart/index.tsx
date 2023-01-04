@@ -4,8 +4,15 @@ import ResizeObserver from "resize-observer-polyfill";
 import merge from "lodash.merge";
 import isEqual from "fast-deep-equal";
 import {
-  EventParams, FlexChartDataItem, FlexChartDataObject, FlexChartEventsFuncType, FlexChartEventsFuncTypeHandle,
-  FlexChartProps, FlexChartState, ResizeObserverType,
+  EventParams,
+  FlexChartDataItem,
+  FlexChartDataItemBasic,
+  FlexChartDataObject,
+  FlexChartEventsFuncType,
+  FlexChartEventsFuncTypeHandle,
+  FlexChartProps,
+  FlexChartState,
+  ResizeObserverType,
 } from "./model";
 import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
@@ -21,7 +28,7 @@ export type EChartsType = echarts.ECharts;
  * @class FlexChart
  * @description 封装echarts的自动化布局处理的灵活图表，目前主要针对line与bar系列类型
  */
-export class FlexChart<P extends FlexChartDataItem> extends React.PureComponent<FlexChartProps<P>, FlexChartState> {
+export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureComponent<FlexChartProps<P>, FlexChartState> {
   
   static defaultProps = {
     data: [],
@@ -173,6 +180,7 @@ export class FlexChart<P extends FlexChartDataItem> extends React.PureComponent<
     let maxLongSeriesNameCount = 0;
     let maxValue = 0;
     const seriesNames: string[] = [];
+    // @ts-ignore
     const seriesData = data.map((item: FlexChartDataItem, index: number) => {
       // @ts-ignore
       const res = `${item?.[fieldNames?.name || "name"]}`;
