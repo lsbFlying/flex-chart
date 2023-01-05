@@ -1,3 +1,5 @@
+import { LoadingOption } from "../model";
+
 /**
  * 特殊字符的尺寸比例（占常规字体设置大小的比例）
  * 整个键盘上能看到的常规字符都有
@@ -37,7 +39,7 @@ fontSizeMap.set(",", 0.265);
 fontSizeMap.set(".", 0.2647);
 fontSizeMap.set(":", 0.2647);
 fontSizeMap.set("'", 0.245);
-fontSizeMap.set('"', 0.4281);
+fontSizeMap.set("\"", 0.4281);
 fontSizeMap.set("1", 0.4025);
 fontSizeMap.set("0", 0.6);
 fontSizeMap.set("2", 0.6);
@@ -101,3 +103,25 @@ fontSizeMap.set("W", 0.9313);
 fontSizeMap.set("X", 0.6372);
 fontSizeMap.set("Y", 0.6633);
 fontSizeMap.set("Z", 0.6258);
+
+export const defaultLoadingOption: LoadingOption = {
+  text: "loading",
+  textColor: "#5398f2",
+  color: "#5398f2",
+  maskColor: "rgba(0, 0, 0, 0.1)",
+  zlevel: 0,
+  // 字体大小。从 `v4.8.0` 开始支持。
+  fontSize: 12,
+  // 是否显示旋转动画（spinner）。从 `v4.8.0` 开始支持。
+  showSpinner: true,
+  // 旋转动画（spinner）的半径。从 `v4.8.0` 开始支持。
+  spinnerRadius: 12,
+  // 旋转动画（spinner）的线宽。从 `v4.8.0` 开始支持。
+  lineWidth: 2,
+  // 字体粗细。从 `v5.0.1` 开始支持。
+  fontWeight: "normal",
+  // 字体风格。从 `v5.0.1` 开始支持。
+  fontStyle: "normal",
+  // 字体系列。从 `v5.0.1` 开始支持。
+  fontFamily: "sans-serif"
+};

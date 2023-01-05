@@ -11,6 +11,7 @@ import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
 import { convertNumToThousand, exactCalcStrFontCount, fit } from "./utils";
+import {defaultLoadingOption} from "./static";
 
 export type EChartsType = echarts.ECharts;
 
@@ -28,6 +29,8 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
     direction: "vertical",
     mergeOption: true,
     autoFit: false,
+    loading: false,
+    loadingOption: defaultLoadingOption,
   };
   
   state: FlexChartState = {
@@ -99,12 +102,18 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
   renderOption = (prevProps: Readonly<FlexChartProps<P>>) => {
     const {
       autoFit, mergeOption, direction, options, data, autoResize, lineSeries, barSeries,
+      loading, loadingOption,
     } = this.props;
     const {
       autoFit: prevAutoFit, mergeOption: prevMergeOption, direction: prevDirection, options: prevOptions,
-      data: prevData, autoResize: prevAutoResize,
-      lineSeries: prevLineSeries, barSeries: prevBarSeries
+      data: prevData, autoResize: prevAutoResize, lineSeries: prevLineSeries, barSeries: prevBarSeries,
     } = prevProps;
+    if (loading) {
+      // @ts-ignore
+      this.chartsInstance?.showLoading("default", loadingOption);
+    } else {
+      this.chartsInstance?.hideLoading();
+    }
     if (
       data !== prevData || lineSeries !== prevLineSeries || barSeries !== prevBarSeries
       || options !== prevOptions || direction !== prevDirection || autoFit !== prevAutoFit
@@ -255,35 +264,22 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
       },
     };
     
+    const xAxisOriginObj = isVertical
+      ? {type: "category", boundaryGap: true, data: categoryDataArray, ...axisTickObj}
+      : {type: "value", ...valueAxisNameObj};
     const xAxisObj = {
-      xAxis: merge(isVertical
-        ?
-        {
-          type: "category",
-          boundaryGap: true,
-          data: categoryDataArray,
-          ...axisTickObj,
-        }
-        :
-        {
-          type: "value",
-          ...valueAxisNameObj,
-        }, chartOptions.xAxis),
+      xAxis: Object.prototype.toString.call(chartOptions.xAxis) === "[object Array]"
+        ? (chartOptions.xAxis as echarts.EChartOption.XAxis[]).map(item => ({...xAxisOriginObj, ...item}))
+        : merge(xAxisOriginObj, chartOptions.xAxis),
     };
     
+    const yAxisOriginObj = isVertical
+      ? {type: "value", ...valueAxisNameObj}
+      : {type: "category", data: categoryDataArray.reverse(), ...axisTickObj};
     const yAxisObj = {
-      yAxis: merge(isVertical
-        ?
-        {
-          type: "value",
-          ...valueAxisNameObj,
-        }
-        :
-        {
-          type: "category",
-          data: categoryDataArray.reverse(),
-          ...axisTickObj,
-        }, chartOptions.yAxis),
+      yAxis: Object.prototype.toString.call(chartOptions.yAxis) === "[object Array]"
+        ? (chartOptions.yAxis as echarts.EChartOption.YAxis[]).map(item => ({...yAxisOriginObj, ...item}))
+        : merge(yAxisOriginObj, chartOptions.yAxis),
     };
   
     // legend的是否换行很难计算，所以干脆保持最宽泛的原始配置项
@@ -325,23 +321,27 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
         const curLegendItemWidth = exactCalcStrFontCount(item)
           * legendFontSize
           + legendObj.legend.itemWidth + legendIconTextDis + legendObj.legend.itemGap;
-    
+        
         rowReduceLegendItemWidth += curLegendItemWidth;
-    
+        
         const nextItem = array[index + 1];
         // 包含itemGap
         const nextLegendItemWidth = nextItem
           ? exactCalcStrFontCount(nextItem) * legendFontSize
           + legendObj.legend.itemWidth + legendIconTextDis + legendObj.legend.itemGap
           : 0;
-    
-        // 真正的最终legend的宽度需要去除最后一个legend的右侧gap距离
-        const zDiffWidth = rowReduceLegendItemWidth - legendObj.legend.itemGap;
+        
+        /**
+         * 真正的最终legend的宽度需要去除最后一个legend的右侧gap距离
+         * flexChart对于像素尺寸的计算有足够的精度，但仍然会有些许误差
+         * 根据实际使用情况来看，一般这个误差可以控制在2px以内
+         */
+        const zDiffWidth = rowReduceLegendItemWidth - (legendObj.legend.itemGap - 2);
         const condition = zDiffWidth > legendNoPaddingWidth
           || (zDiffWidth === legendNoPaddingWidth && index < (array.length - 1))
           || zDiffWidth > legendNoPaddingWidth
           || (zDiffWidth + nextLegendItemWidth) > legendNoPaddingWidth;
-    
+        
         if (condition) {
           legendRows++;
           // 此时需要清零重新计算累计的图例宽度
@@ -351,7 +351,7 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
     } else {
       legendRows = seriesNames.length;
     }
-  
+    
     const legendPaddingTopBottom = typeof legendPadding === "number"
       ? legendPadding
       : (legendPadding as number[]).length === 1
