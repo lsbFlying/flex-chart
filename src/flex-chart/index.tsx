@@ -75,8 +75,10 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
     ) {
       this.chartsInstance?.dispose();
       await this.createNewChartInstance();
+      this.renderOption(prevProps, true);
+    } else {
+      this.renderOption(prevProps);
     }
-    this.renderOption(prevProps);
   }
   
   componentWillUnmount() {
@@ -99,7 +101,7 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
   }
   
   /** 处理更新渲染 */
-  renderOption = (prevProps: Readonly<FlexChartProps<P>>) => {
+  renderOption = (prevProps: Readonly<FlexChartProps<P>>, render?: boolean) => {
     const {
       autoFit, mergeOption, direction, options, data, autoResize, lineSeries, barSeries,
       loading, loadingOption,
@@ -115,7 +117,7 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
       this.chartsInstance?.hideLoading();
     }
     if (
-      data !== prevData || lineSeries !== prevLineSeries || barSeries !== prevBarSeries
+      render || data !== prevData || lineSeries !== prevLineSeries || barSeries !== prevBarSeries
       || options !== prevOptions || direction !== prevDirection || autoFit !== prevAutoFit
       || mergeOption !== prevMergeOption || autoResize !== prevAutoResize
     ) {

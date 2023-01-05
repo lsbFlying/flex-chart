@@ -63,16 +63,50 @@ export interface FlexChartProps<DataItem extends FlexChartDataItemBasic = FlexCh
   loadingOption: LoadingOption;
 }
 
-export interface FlexChartEventsType {
-  click?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  dblclick?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mousedown?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mousemove?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseup?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseover?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  mouseout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  globalout?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
-  contextmenu?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+type ChartEventsTypes = {
+  type:
+    | "click"
+    | "dblclick"
+    | "mousedown"
+    | "mousemove"
+    | "mouseup"
+    | "mouseover"
+    | "mouseout"
+    | "globalout"
+    | "contextmenu"
+    | "highlight"
+    | "downplay"
+    | "selectchanged"
+    | "legendselectchanged"
+    | "legendselected"
+    | "legendunselected"
+    | "legendselectall"
+    | "legendinverseselect"
+    | "legendscroll"
+    | "datazoom"
+    | "datarangeselected"
+    | "graphroam"
+    | "georoam"
+    | "treeroam"
+    | "timelinechanged"
+    | "timelineplaychanged"
+    | "restore"
+    | "dataviewchanged"
+    | "magictypechanged"
+    | "geoselectchanged"
+    | "geoselected"
+    | "geounselected"
+    | "axisareaselected"
+    | "brush"
+    | "brushEnd"
+    | "brushselected"
+    | "globalcursortaken"
+    | "rendered"
+    | "finished";
+}
+
+export type FlexChartEventsType = {
+  [key in ChartEventsTypes["type"]]?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
 }
 
 export type FlexChartEventsFuncTypeHandle = (
