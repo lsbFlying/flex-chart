@@ -11,7 +11,7 @@ import {
   defaultFontSize, offsetMargin, legendConfig, legendIconTextDis,
 } from "./option";
 import { convertNumToThousand, exactCalcStrFontCount, fit } from "./utils";
-import {defaultLoadingOption} from "./static";
+import { defaultLoadingOption } from "./static";
 
 export type EChartsType = echarts.ECharts;
 
@@ -45,7 +45,7 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
   async componentDidMount() {
     const { autoResize } = this.props;
     const { containerRef } = this.state;
-    await this.createNewChartInstance();
+    await this.createChartInstance();
     if (autoResize) {
       this.chartResizeObserver = new ResizeObserver(() => {
         (this.chartsInstance as EChartsType).resize();
@@ -67,14 +67,12 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
      * 3. 修改图表事件绑定 onEvents 的时候
      */
     if (
-      prevProps && (
-        !isEqual(initOpts, prevInitOpts)
-        || !isEqual(initTheme, prevInitTheme)
-        || !isEqual(onEvents, prevOnEvents)
-      )
+      !isEqual(initOpts, prevInitOpts)
+      || !isEqual(initTheme, prevInitTheme)
+      || !isEqual(onEvents, prevOnEvents)
     ) {
       this.chartsInstance?.dispose();
-      await this.createNewChartInstance();
+      await this.createChartInstance();
       this.renderOption(prevProps, true);
     } else {
       this.renderOption(prevProps);
@@ -126,8 +124,8 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
     }
   }
   
-  /** 创建新的图表实例 */
-  createNewChartInstance = async () => {
+  /** 创建图表实例 */
+  createChartInstance = async () => {
     const { initTheme, initOpts, onEvents, onChartLoad } = this.props;
     const { containerRef } = this.state;
     this.chartsInstance = echarts.init(
@@ -175,9 +173,10 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
      * 此时如果遇到大数据则会耗时，不建议，所以尽量在遇到大数据的情况下给出类目数据
      */
     // @ts-ignore
-    const categoryDataArray = (data[0]?.[fieldNames?.data || "data"] as FlexChartDataObject[])
+    const categoryDataArray = (data[0]?.[fieldNames?.data || "data"] as FlexChartDataObject[])?.map(item => (
       // @ts-ignore
-      .map(item => item?.[fieldNames?.dataName || "name"]);
+      item?.[fieldNames?.dataName || "name"]
+    ));
     
     const isVertical = direction.includes("vertical");
     

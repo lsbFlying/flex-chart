@@ -59,11 +59,14 @@ export interface FlexChartProps<DataItem extends FlexChartDataItemBasic = FlexCh
    * @default false
    */
   autoFit: boolean;
+  /** chart的loading */
   loading: boolean;
+  /** chart的loading配置项 */
   loadingOption: LoadingOption;
 }
 
-type ChartEventsTypes = {
+/** FlexChart的监听事件的种类类型 */
+type FlexChartEventsTypes = {
   type:
     | "click"
     | "dblclick"
@@ -105,15 +108,18 @@ type ChartEventsTypes = {
     | "finished";
 }
 
+/** FlexChart监听事件类型 */
 export type FlexChartEventsType = {
-  [key in ChartEventsTypes["type"]]?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
+  [key in FlexChartEventsTypes["type"]]?: FlexChartEventsFuncTypeHandle | FlexChartEventsFuncType;
 }
 
+/** FlexChart监听事件回调函数类型 */
 export type FlexChartEventsFuncTypeHandle = (
   params: EventParams,
   chartsInstance: EChartsType,
 ) => void;
 
+/** FlexChart监听事件的回调函数的参数类型 */
 export type EventParams = {
   type: string;
   encode: {
@@ -175,7 +181,7 @@ export type HandleEvent = {
 /** flex-chart图表的风格方向 */
 export type FlexChartDirection = "vertical" | "horizontal" | "verticalInverse" | "horizontalInverse";
 
-// 尺寸变化类型
+/** 尺寸变化类型 */
 export interface ResizeObserverType {
   /** 监听 */
   observe(target: Element): void;
@@ -185,12 +191,15 @@ export interface ResizeObserverType {
   disconnect(): void;
 }
 
+/** FlexChart的状态类型 */
 export interface FlexChartState {
   containerRef: RefObject<HTMLElement>;
 }
 
+/** FlexChart的data属性的中数据data的value值的类型 */
 export type FlexChartDataValue = number | string | null | undefined;
 
+/** FlexChart的data属性的中数据data数组的元素类型 */
 export interface FlexChartDataObject {
   /** 数据项名称 */
   name: string | number;
@@ -198,6 +207,7 @@ export interface FlexChartDataObject {
   value: FlexChartDataValue;
 }
 
+/** FlexChart的data属性的字段转换字段名接口类型 */
 export interface FieldNames {
   name?: string;
   data?: string;
@@ -205,6 +215,7 @@ export interface FieldNames {
   dataValue?: string;
 }
 
+/** FlexChart的data属性的基础类型 */
 export interface FlexChartDataItemBasic {
   [key: string]: any;
 }
@@ -220,6 +231,7 @@ export interface FlexChartDataItem {
   data: FlexChartDataObject[];
 }
 
+/** echarts的初始化参数配置 */
 export interface EchartsInitOpts {
   devicePixelRatio?: number;
   renderer?: "canvas" | "svg";
@@ -230,6 +242,7 @@ export interface EchartsInitOpts {
   locale?: string;        // 从 `5.0.0` 开始支持
 }
 
+/** 主要的系列类型line与bar */
 export type SeriesTypes = "bar" | "line";
 
 export type FlexChartEventsFuncType = {
