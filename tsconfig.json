@@ -35,5 +35,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules", "dist", "lib", "esm", "coverage"],
-  "include": ["src/flex-chart"]
+  "include": ["src"]
 }
