@@ -10,8 +10,8 @@
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": false,
-    "inlineSources": true,
-    "sourceMap": true,
+    "inlineSources": false,
+    "sourceMap": false,
     "declaration": true,
 
     "esModuleInterop": true,
