@@ -13,7 +13,7 @@ yarn-error.log
 /lib
 /esm
 
-#src/dev
+# develop
 /src/dev
 /src/index.tsx
 /src/index.css
