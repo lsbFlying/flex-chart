@@ -13,11 +13,6 @@ yarn-error.log
 /lib
 /esm
 
-# develop
-/src/dev
-/src/index.tsx
-/src/index.css
-
 # misc
 .DS_Store
 /src/.DS_Store
