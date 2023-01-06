@@ -32,7 +32,7 @@ npm install --save echarts
 ```tsx
 import { FlexChart } from "flex-chart";
 
-const testData = [
+const mockData = [
   {
     name: "ClothingClothingSalesVolume",
     data: [
@@ -70,7 +70,7 @@ const testData = [
 function App() {
   return (
     <div style={{ width: "100%", height: "100%" }}>
-      <FlexChart data={testData}/>
+      <FlexChart data={mockData}/>
     </div>
   );
 }
