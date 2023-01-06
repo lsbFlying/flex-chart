@@ -65,6 +65,10 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
      * 1. 切换样式主题 initTheme 的时候
      * 2. 修改初始化配置 initOpts 的时候
      * 3. 修改图表事件绑定 onEvents 的时候
+     * todo：事实上由于事件监听的函数是引用类型，而且一般如果是函数组件，内部的监听事件如果在没有useCallback的情况下每一次都是新的变化
+     * 这就导致每一次的onEvents都会重新销毁实例重新渲染，很耗费性能，但是在class组件中没有这个问题
+     * 而且在class组件中会有解除事件监听绑定的需求，这里刚好适应class组件
+     * todo：这里需要后续进行调整适应hook组件，否则每一个onEvents都可能需要useCallback以避免重复渲染损耗性能
      */
     if (
       !isEqual(initOpts, prevInitOpts)
