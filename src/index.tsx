@@ -360,7 +360,10 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
     const legendWidth = legendObj.legend.orient === "vertical"
       ? maxLongSeriesNameCount * legendFontSize + legendObj.legend.itemWidth + legendIconTextDis
       : legendNoPaddingWidth + legendPaddingLeftRight;
-    const legendHeight = legendObj.legend.itemHeight * legendRows
+    
+    const legendFontsize = legendObj.legend.textStyle?.fontSize || defaultFontSize;
+    const legendItemHeight = Math.max(legendObj.legend.itemHeight, legendFontsize);
+    const legendHeight = legendItemHeight * legendRows
       + legendObj.legend.itemGap * (legendRows - 1) + legendPaddingTopBottom;
     
     // legend的top与left权重大于bottom与right
