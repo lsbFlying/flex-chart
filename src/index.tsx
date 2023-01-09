@@ -115,8 +115,8 @@ export class FlexChart<P extends FlexChartDataItemBasic> extends React.PureCompo
       this.chartsInstance?.hideLoading();
     }
     if (
-      render || data !== prevData || lineSeries !== prevLineSeries || barSeries !== prevBarSeries
-      || options !== prevOptions || direction !== prevDirection || autoFit !== prevAutoFit
+      render || data !== prevData || !isEqual(lineSeries, prevLineSeries) || !isEqual(barSeries, prevBarSeries)
+      || !isEqual(options, prevOptions) || direction !== prevDirection || autoFit !== prevAutoFit
       || mergeOption !== prevMergeOption || autoResize !== prevAutoResize
     ) {
       fit.autoFit = autoFit;
