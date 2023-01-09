@@ -81,17 +81,19 @@ function App() {
 |--------------|------------------------------------------------------------------|--------------------------|------------|
 | autoFit      | adjust proportionally according to the page width                | boolean                  | false      |
 | autoResize   | decide whether to trigger when parent component container resize | boolean                  | -          |
-| barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/flex-chart/model/index.ts)   | -          |
-| data         | data source                            | [FlexChartDataItem[]](./src/flex-chart/model/index.ts)      | []         |
+| barSeries    | set bar series data option             | [EChartOption.SeriesBar](./src/model/index.ts)   | -          |
+| data         | data source                            | [FlexChartDataItem[]](./src/model/index.ts)      | []         |
 | direction    | chart direction | "vertical"<br/>"horizontal"<br/>"verticalInverse"<br/>"horizontalInverse" | "vertical" |
-| initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/flex-chart/model/index.ts)  | -          |
+| initOpts     | echarts initialization parameter configuration | [EchartsInitOpts](./src/model/index.ts)  | -          |
 | initTheme    | echarts Initialization Style Theme Configuration                 | string &#124; object     | -          |
-| lineSeries   | set line series data option             | [EChartOption.SeriesLine](./src/flex-chart/model/index.ts) | -          |
+| lineSeries   | set line series data option             | [EChartOption.SeriesLine](./src/model/index.ts) | -          |
 | mergeOption  | whether to merge the echarts configuration                       | boolean                  | true       |
-| onChartLoad  | chart load event         | (chartsInstance: [EChartsType](./src/flex-chart/model/index.ts)) => void  | -          |
-| onEvents     | echarts mouse event monitoring         | [FlexChartEventsType](./src/flex-chart/model/index.ts)      | -          |
-| options      | configuration parameters of echarts                | [EChartOption](./src/flex-chart/model/index.ts) | -          |
+| onChartLoad  | chart load event         | (chartsInstance: [EChartsType](./src/model/index.ts)) => void  | -          |
+| onEvents     | echarts mouse event monitoring         | [FlexChartEventsType](./src/model/index.ts)      | -          |
+| options      | configuration parameters of echarts                | [EChartOption](./src/model/index.ts) | -          |
 | seriesTypes  | series data type               | ("bar" &#124; "line") <br/> &#124; ("bar" &#124; "line")[] | -          |
+| loading      | chart的loading | boolean | false |
+| loadingOption | chart的loading相关配置 | [LoadingOption](./src/model/icss.ts) | [defaultLoadingOption](./src/static/index.ts) |
 
 ### License
 [MIT License](https://github.com/lsbFlying/flex-chart/blob/master/LICENSE) (c) [刘善保](https://github.com/lsbFlying)
